@@ -1,0 +1,11 @@
+.env
+.venv/
+.mining_state.json
+data/insights.duckdb
+data/chroma/
+analysis_log.json
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
