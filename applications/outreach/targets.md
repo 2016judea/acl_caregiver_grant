@@ -15,40 +15,39 @@ Update the **Status** column as you go: `not sent` → `sent [date]` → `replie
 
 | Target | Why them | Contact path | Ask | Status |
 |---|---|---|---|---|
-| **Dr. Joseph Gaugler**, U of M | Directs the BOLD Public Health Center of Excellence on Dementia Caregiving; Kane Endowed Chair in Long-Term Care & Aging. Most relevant dementia-caregiving expert in the country — and local. | Email via profile: experts.umn.edu/en/persons/joseph-e-gaugler | Advisor / feedback / letter | not sent |
+| **Dr. Joseph Gaugler**, U of M | Directs the BOLD Public Health Center of Excellence on Dementia Caregiving; Kane Endowed Chair in Long-Term Care & Aging. Most relevant dementia-caregiving expert in the country — and local. | gaug0015@umn.edu | Advisor / feedback / letter | **sent 2026-07-12** |
 | **BOLD Center team** (his colleagues) | Same center, more reachable than Gaugler himself. | bolddementiacaregiving.org/our-team | Advisor / letter | **submitted (contact form) 2026-07-12** |
-| **Center for Aging Science & Care Innovation**, U of M School of Nursing | Nursing-informatics + care-innovation; fits both apps. | nursing.umn.edu/centers/center-aging-science-care-innovation | Advisor | not sent |
-| **Alzheimer's Association, MN–ND Chapter** | Caregiver-facing nonprofit; program/education staff can give feedback + a letter. | mnnd-info@alz.org · 952.830.0512 | Letter of support | not sent |
+| **Center for Aging Science & Care Innovation**, U of M School of Nursing | Nursing-informatics + care-innovation; fits both apps. | Dr. Siobhan McMahon (director) · skmcmaho@umn.edu | Advisor | **sent 2026-07-12** |
+| **Alzheimer's Association, MN–ND Chapter** | Caregiver-facing nonprofit; program/education staff can give feedback + a letter. | mnnd-info@alz.org · 952.830.0512 | Letter of support | **sent 2026-07-12** |
 | **Local memory-care facility** (3–4 Twin Cities homes) | A "we'd pilot this" LOI = a named Phase-1 partner. | Cold-call, ask for the director | Pilot LOI | not sent |
 
 ## CNA Shield (Track 2) — workforce orgs + pilot facilities
 
 | Target | Why them | Contact path | Ask | Status |
 |---|---|---|---|---|
-| **Minnesota Home Care Association (MHCA)** | ~100 home-care agencies; has a Workforce Workgroup — your exact Track-2 audience + route to a pilot agency. | mnhomecare.org | Advisor / pilot | not sent |
-| **Care Providers of Minnesota** | SNF/LTC facility trade group — pilot facilities + ratio-reporting reality. | careprovidersmn.org (workforce/member services) | Pilot LOI | not sent |
-| **LeadingAge Minnesota** | Nonprofit senior-care provider association. | leadingagemn.org | Pilot LOI | not sent |
-| **ICI — MN Direct Support Workforce Project**, U of M | Academic home for direct-care-workforce research; a named workforce advisor. | ici.umn.edu/projects/PHLA-EPtTgC7v3b39PKIaw | Advisor | not sent |
-| **MN Northstar Geriatrics Workforce Enhancement Program (MN-GWEP)** | Caregiver + workforce training; fits either app. | mngwep.umn.edu | Advisor / letter | not sent |
+| **Minnesota Home Care Association (MHCA)** | ~100 home-care agencies; has a Workforce Workgroup — your exact Track-2 audience + route to a pilot agency. | membership@mnhomecare.org | Advisor / pilot | **sent 2026-07-12** |
+| **Care Providers of Minnesota** | SNF/LTC facility trade group — pilot facilities + ratio-reporting reality. | nmattson@careproviders.org (Nicole Mattson, VP Advocacy & Workforce) — *both info@ and advocacy-workforce@ bounced; use the named FLast@ mailbox* | Pilot LOI | **sent 2026-07-12** |
+| **LeadingAge Minnesota** | Nonprofit senior-care provider association. | info@leadingagemn.org | Pilot LOI | **sent 2026-07-12** |
+| **ICI — MN Direct Support Workforce Project**, U of M | Academic home for direct-care-workforce research; a named workforce advisor. | hewit005@umn.edu (Amy Hewitt) | Advisor | **sent 2026-07-12** |
+| **MN Northstar Geriatrics Workforce Enhancement Program (MN-GWEP)** | Caregiver + workforce training; fits either app. | mn-gwep@umn.edu | Advisor / letter | **sent 2026-07-12** |
 
 ---
 
 ## Verified send-to addresses (as of 2026-07)
 
-**Direct — send today (general inboxes; open with "please route to the right person"):**
+**All emails sent 2026-07-12 (7 total); BOLD contact form submitted separately.**
+
 - Alzheimer's Association, MN–ND — mnnd-info@alz.org · 952.830.0512  → Dementia Coach, letter (template 3)
 - Minnesota Home Care Association — membership@mnhomecare.org · 651-635-0783  → CNA Shield, advisor/pilot (template 2/3)
-- Care Providers of Minnesota — info@careproviders.org · 952-854-2844  → CNA Shield, pilot LOI (template 3)
+- Care Providers of Minnesota — nmattson@careproviders.org (Nicole Mattson) · 952-854-2844  → CNA Shield, pilot LOI (template 3) · *both info@ and advocacy-workforce@ bounced; their generic inboxes don't accept mail — use a named FLast@careproviders.org mailbox*
 - LeadingAge Minnesota — info@leadingagemn.org · 651-645-4545  → CNA Shield, pilot LOI (template 3)
-
-**Grab the address at the source (do NOT guess an individual's email):**
 - Dr. Joseph Gaugler — gaug0015@umn.edu  → Dementia Coach, advisor (template 1)
 - MN-GWEP — mn-gwep@umn.edu  → either, advisor/letter
 - ICI MN Direct Support Workforce Project — hewit005@umn.edu (Amy Hewitt, director)  → CNA Shield, advisor
+- Center for Aging Science & Care Innovation (Nursing) — skmcmaho@umn.edu (Dr. Siobhan McMahon, director)  → Dementia Coach, advisor
 
-**Still need the address (contact form or center page):**
-- BOLD Center on Dementia Caregiving — contact form: bolddementiacaregiving.org/contact/  → Dementia Coach, advisor/letter
-- Center for Aging Science & Care Innovation (Nursing) — nursing.umn.edu/centers/center-aging-science-care-innovation  → either, advisor
+**Contact form (submitted, not email):**
+- BOLD Center on Dementia Caregiving — bolddementiacaregiving.org/contact/  → Dementia Coach, advisor/letter
 
 ## Notes on the ask
 - **Advisor ≠ employee.** You need a *named commitment to advise*, not payroll.

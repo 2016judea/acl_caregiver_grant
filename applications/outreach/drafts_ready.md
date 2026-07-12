@@ -95,13 +95,13 @@ Aidan Jude · [email]
 
 ---
 
-## 5 — Center for Aging Science & Care Innovation, U of M Nursing (Dementia Coach · advisor · ADDRESS NEEDED)
+## 5 — Center for Aging Science & Care Innovation, U of M Nursing (Dementia Coach · advisor · SENT 2026-07-12)
 
-**To:** _grab center contact from_ nursing.umn.edu/centers/center-aging-science-care-innovation
+**To:** skmcmaho@umn.edu (Dr. Siobhan McMahon, center director)
 **Subject:** Dementia caregiver AI tool — 20 min of your team's expertise?
 
 ```
-Hello,
+Dr. McMahon,
 
 I'm an independent developer in Saint Paul building Dementia Coach, a mobile tool that turns validation therapy into real-time, personalized communication scripts for family caregivers. It came out of a computational analysis of 1,237 dementia-caregiver forum posts, which pointed to reality-orientation harm as the highest-severity, most-addressable gap in family caregiver support.
 
@@ -137,19 +137,21 @@ Aidan Jude
 
 ---
 
-## 7 — Care Providers of Minnesota (CNA Shield · pilot LOI · general inbox)
+## 7 — Care Providers of Minnesota (CNA Shield · pilot LOI · SENT 2026-07-12)
 
-**To:** info@careproviders.org
+**To:** nmattson@careproviders.org (Nicole Mattson, VP Advocacy & Workforce)
+_Note: both info@careproviders.org and advocacy-workforce@careproviders.org bounced — their
+generic inboxes don't accept mail. Use a named `FLast@careproviders.org` mailbox instead._
 **Subject:** A workforce AI tool built from CNAs' own words — pilot or support?
 
 ```
-Hello,
+Hi Nicole,
 
 I'm an independent developer in Saint Paul. I built CNA Shield, a voice-first tool that lets CNAs document care hands-free, generate structured shift handoffs, and log staffing levels — designed directly from an analysis of 1,324 posts from working CNAs about documentation burden, unsafe ratios, and handoff failures.
 
 Working prototype: https://cna-shield.vercel.app
 
-It's a Phase 1 entry in the federal ACL Caregiver AI Prize Challenge (due July 31). A short letter of support — or interest from a member facility in piloting it with staff — would strengthen the application and help me build the right thing. Could you route this to the right person? I'd welcome a 15-minute demo.
+It's a Phase 1 entry in the federal ACL Caregiver AI Prize Challenge (due July 31). A short letter of support — or interest from a member facility in piloting it with staff — would strengthen the application and help me build the right thing. Could you point me to the right person, or would a 15-minute demo be worthwhile?
 
 Thanks for considering,
 Aidan Jude
