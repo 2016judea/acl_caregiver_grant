@@ -16,7 +16,7 @@ Update the **Status** column as you go: `not sent` → `sent [date]` → `replie
 | Target | Why them | Contact path | Ask | Status |
 |---|---|---|---|---|
 | **Dr. Joseph Gaugler**, U of M | Directs the BOLD Public Health Center of Excellence on Dementia Caregiving; Kane Endowed Chair in Long-Term Care & Aging. Most relevant dementia-caregiving expert in the country — and local. | Email via profile: experts.umn.edu/en/persons/joseph-e-gaugler | Advisor / feedback / letter | not sent |
-| **BOLD Center team** (his colleagues) | Same center, more reachable than Gaugler himself. | bolddementiacaregiving.org/our-team | Advisor / letter | not sent |
+| **BOLD Center team** (his colleagues) | Same center, more reachable than Gaugler himself. | bolddementiacaregiving.org/our-team | Advisor / letter | **submitted (contact form) 2026-07-12** |
 | **Center for Aging Science & Care Innovation**, U of M School of Nursing | Nursing-informatics + care-innovation; fits both apps. | nursing.umn.edu/centers/center-aging-science-care-innovation | Advisor | not sent |
 | **Alzheimer's Association, MN–ND Chapter** | Caregiver-facing nonprofit; program/education staff can give feedback + a letter. | mnnd-info@alz.org · 952.830.0512 | Letter of support | not sent |
 | **Local memory-care facility** (3–4 Twin Cities homes) | A "we'd pilot this" LOI = a named Phase-1 partner. | Cold-call, ask for the director | Pilot LOI | not sent |
