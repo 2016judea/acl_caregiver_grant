@@ -108,7 +108,7 @@ At shift end, the AI synthesizes the day's voice logs into a structured handoff 
 
 **Module 3 — Safe Ratio Reporting**
 
-CNAs log their actual patient assignment at shift start with a single tap (e.g., "14 residents assigned"). The app accumulates ratio data across shifts and workers and generates aggregate, anonymized reports for state regulatory submission — with timestamped documentation supporting the report. No individual worker is identified. The system uses differential privacy techniques to ensure that even aggregate data cannot be reverse-engineered to individual reporters. This is analogous to the Aviation Safety Reporting System (ASRS), which transformed airline safety by decriminalizing incident reporting.
+CNAs log their actual patient assignment at shift start with a single tap (e.g., "14 residents assigned"). The app accumulates ratio data across shifts and workers and generates aggregate, anonymized reports for state regulatory submission — with timestamped documentation supporting the report. No individual worker is identified. This function is worker-owned and worker-initiated — generated only when a CNA logs an assignment, never accessible to or controlled by the facility, and independent of whether the facility adopts CNA Shield. The system uses differential privacy techniques to ensure that even aggregate data cannot be reverse-engineered to individual reporters. This is analogous to the Aviation Safety Reporting System (ASRS), which transformed airline safety by decriminalizing incident reporting.
 
 ### 1.3 Current Development Stage (TRL)
 
@@ -122,6 +122,8 @@ CNAs log their actual patient assignment at shift start with a single tap (e.g.,
 | HIPAA-compliant mobile infrastructure | Standard healthcare app stack | 7 |
 
 **Overall application TRL: 3–4.** AI ambient documentation for physicians is proven at TRL 7–8. CNA Shield's novel contributions — voice interaction designed for care settings, CNA-specific terminology modeling, anonymous worker-protective reporting — are the Phase 1 development targets, establishing TRL 4 by submission for Phase 2.
+
+**Evidence of readiness.** The functional prototype (linked above) demonstrates the voice-logging and handoff-generation flow today, substantiating the readiness of the documentation core. The components rated TRL 3–4 — the CNA-adapted language model and the anonymous ratio-reporting pipeline — are honestly at the design/early-prototype stage and are explicit Phase 1 development targets, not current capabilities; the higher-rated components (on-device speech recognition, FHIR output, HIPAA infrastructure) reuse mature, widely deployed technology. The accompanying Evidence Appendix documents the underlying research and methodology. Throughout, we distinguish what is demonstrable now from what Phase 1 will build, per the Challenge's technology-readiness guidance.
 
 ### 1.4 Evidence Base and User Input
 
@@ -169,6 +171,9 @@ Phase 1 evaluation uses a pre-post design across two partner facilities:
 | Voice accuracy for accents/fast speech | Multi-accent training data; easy correction UI; human review before submission |
 | Regulatory complexity across states | Legal review of ratio reporting pipeline per state; modular compliance architecture |
 | EHR integration timelines | Standalone operation in Phase 1; FHIR integration in Phase 2 |
+| Facility hesitance toward a tool that surfaces ratio violations | Worker-first model (see below): the app is free to workers and independent of facility adoption; facilities license documentation and handoff value, not the ratio function; facilities that staff to legal ratios have nothing to surface |
+
+**A note on adoption incentives.** CNA Shield is worker-first: the app is free to individual CNAs permanently and works whether or not their facility participates. Facility licensing pays for the enterprise documentation and handoff infrastructure — complete, timestamped care records that reduce a facility's own liability and survey-deficiency risk and support CNA retention. That is the facility value proposition, and it is independent of Module 3. The ratio-reporting function is worker-owned, worker-initiated, and anonymized; facilities neither control nor pay for it, and facilities that staff to legal ratios have nothing to surface. This mirrors how confidential safety-reporting systems such as the FAA's Aviation Safety Reporting System coexist with — and are trusted precisely because they remain independent of — the organizations they help improve.
 
 ### 2.3 User-Centered Design Integration
 
@@ -217,6 +222,10 @@ Structured workshops with 20 CNAs across 3 facility types (SNF, memory care, hom
 - **Safety monitoring:** If ratio reporting data reveals conditions that appear to pose immediate patient safety risk, the system has a defined escalation pathway to state health departments (with worker consent).
 - **Continuous improvement:** Bi-weekly user feedback sessions throughout Phase 1; model updated on a 4-week cycle based on correction patterns.
 
+### 2.7 Phase 1 Resourcing and Feasibility
+
+Phase 1 is deliberately scoped for lean execution. The core build team is the Principal Investigator plus a contract engineer; domain expertise comes through a compensated CNA advisory panel, a clinical/documentation advisor, and partner facilities rather than full-time hires. Award funds are prioritized, in order: (1) the voice-recognition and LLM-structuring pipeline and its accuracy benchmarking; (2) HIPAA-compliant infrastructure and per-state legal review of the ratio-reporting pipeline; (3) CNA recruitment and compensation for co-design and the outcome cohorts; (4) facility partnership and integration scoping. Because a working prototype already exists, Phase 1 funds validation, compliance, and workforce trust — not first-build risk. The advisor-and-partner model keeps fixed costs low while grounding the work in real facility and worker input.
+
 ---
 
 ## Section 3: Usability and Integration
@@ -263,7 +272,7 @@ Nursing facilities have unreliable WiFi. Voice logs record locally with on-devic
 | **Human connection priority** | Documentation handled by AI so CNAs spend less time at kiosks and more time with residents — the inverse of current practice |
 | **Personalization** | Voice model adapts to individual CNA speech patterns over time; documentation templates configurable per facility care standards |
 | **Safety, reliability, and transparency** | Explainable AI structuring decisions; audit trails for all documentation; bias monitoring by demographic subgroup; clinical advisor review of model outputs |
-| **Affordability** | Free to individual CNAs permanently; facility licensing scaled to bed count (target: <$5/CNA/month); no CNA loses access if their facility does not adopt |
+| **Affordability** | Free to individual CNAs permanently and independent of facility adoption; facility licensing (target: <$5/CNA/month) pays for the enterprise documentation, handoff, and EHR-integration infrastructure — not for the worker-owned ratio-reporting function; no CNA loses access if their facility does not participate |
 
 ---
 
@@ -275,7 +284,7 @@ The documentation burden CNAs experience is inseparable from EMR infrastructure 
 
 CNA Shield's FHIR-native data architecture is designed from the ground up for EHR integration — not as a Phase 2 add-on but as a core architectural decision. All voice-logged care entries are structured in FHIR R4 format during Module 1 processing, making the integration path straightforward once facility EHR partnerships are established.
 
-Phase 1 will establish a working integration with one partner EHR vendor. This integration is designed to be bidirectional: CNA Shield pulls existing care plans and resident baselines from the EHR (informing handoff context), and pushes CNA-logged care entries back into the structured record — making CNA observations a first-class part of the clinical record for the first time.
+Phase 1 builds this FHIR-native foundation and scopes a pilot integration with one partner EHR vendor; full bidirectional integration is a Phase 2 deliverable. The target design is bidirectional: CNA Shield pulls existing care plans and resident baselines from the EHR (informing handoff context), and pushes CNA-logged care entries back into the structured record — making CNA observations a first-class part of the clinical record for the first time.
 
 The interoperability design also addresses the assistive device landscape: Module 3's ratio reporting API is designed to accept data from facility scheduling systems and badge-based room entry systems, enabling passive ratio documentation without CNA input in future phases.
 

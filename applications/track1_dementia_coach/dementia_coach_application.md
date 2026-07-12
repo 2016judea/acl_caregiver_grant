@@ -11,9 +11,9 @@
 
 ## Abstract
 
-Dementia Coach is a mobile AI application that translates validation therapy — a clinically proven, evidence-based approach to dementia behavioral management — into personalized, real-time guidance accessible to any family caregiver. Using the care recipient's own life history, relationships, and preferences, the AI generates tailored communication scripts for the moments that most often escalate into crisis: sundowning, bath refusal, agitation, and grief episodes triggered by memory loss. Analysis of 1,237 posts from online caregiver forums identified a consistent, devastating pattern: the vast majority of families default to reality-orientation (correcting their loved one's beliefs and memories), a response that clinical evidence shows worsens distress and agitation. Validation therapy — joining rather than correcting the person's subjective reality — reliably reduces these crises but is taught only to trained professionals. Eleven million Americans care for someone with dementia. The knowledge that helps is known; the delivery mechanism to reach family caregivers at scale does not yet exist. Dementia Coach builds that mechanism. A functional prototype demonstrating the core personalized coaching capability is available at: **https://dementia-coach.vercel.app**
+Dementia Coach is a mobile AI application that translates validation therapy — a widely taught, professionally endorsed approach to dementia behavioral management — into personalized, real-time guidance accessible to any family caregiver. Using the care recipient's own life history, relationships, and preferences, the AI generates tailored communication scripts for the moments that most often escalate into crisis: sundowning, bath refusal, agitation, and grief episodes triggered by memory loss. Analysis of 1,237 posts from online caregiver forums identified a consistent, devastating pattern: the vast majority of families default to reality-orientation (correcting their loved one's beliefs and memories), a response that dementia-care guidance widely recognizes as worsening distress and agitation. Validation therapy — joining rather than correcting the person's subjective reality — is endorsed by the Alzheimer's Association and taught across professional dementia care, yet remains inaccessible to family caregivers in any systematic form. Its formal outcome evidence is still maturing, and strengthening that evidence is part of what Phase 1 contributes. Eleven million Americans care for someone with dementia. The knowledge that helps is largely known to professionals; the delivery mechanism to reach family caregivers at scale does not yet exist. Dementia Coach builds that mechanism. A functional prototype demonstrating the core personalized coaching capability is available at: **https://dementia-coach.vercel.app**
 
-*(196 words)*
+*(approx. 225 words)*
 
 ---
 
@@ -47,7 +47,7 @@ The crisis does not happen tonight.
 
 ---
 
-This is not a hypothetical. It is how validation therapy works when applied correctly — and it has never been accessible to family caregivers at scale until now.
+This is not a hypothetical. It is how validation therapy is practiced by trained professionals — and it has never been accessible to family caregivers at scale until now.
 
 ---
 
@@ -55,9 +55,11 @@ This is not a hypothetical. It is how validation therapy works when applied corr
 
 ### 1.1 The Problem: A Known Solution That Family Caregivers Cannot Access
 
-Dementia behavioral management has an evidence-based solution: validation therapy. Developed by Naomi Feil and supported by decades of peer-reviewed research, validation therapy centers on one principle — when someone with dementia believes something that is not factually accurate (that their deceased spouse is still alive, that they need to go home to cook dinner, that today is 1965), the clinically effective response is to join their emotional reality rather than correct the factual one. The correction causes fresh grief, confusion, and agitation. The validation reduces distress.
+Dementia behavioral management has a well-established professional approach: validation therapy. Developed by Naomi Feil and taught in professional dementia care for four decades, validation therapy centers on one principle — when someone with dementia believes something that is not factually accurate (that their deceased spouse is still alive, that they need to go home to cook dinner, that today is 1965), the clinically effective response is to join their emotional reality rather than correct the factual one. The correction frequently causes fresh grief, confusion, and agitation; validation instead seeks to reduce it by meeting the person where they are.
 
 This approach is taught in memory care facilities, used by geriatric care managers, and recommended by the Alzheimer's Association. Family caregivers — who provide 83% of dementia care in the United States — do not have access to it in any systematic, personalized form.
+
+While formal randomized-trial evidence for validation therapy specifically remains limited, the broader principle it rests on — that correcting a person with dementia's reality tends to escalate distress, while meeting it tends to de-escalate — is well recognized in person-centered dementia care and reflected in Alzheimer's Association communication guidance. Building stronger outcome evidence for AI-delivered, personalized application of this approach is itself part of what Phase 1 contributes (see Section 2).
 
 ### 1.2 Evidence of Need: What Family Caregivers Actually Experience
 
@@ -148,13 +150,15 @@ A brief check-in asks how the caregiver is doing. The AI responds with non-judgm
 | Component | Technology Basis | TRL |
 |-----------|-----------------|-----|
 | Conversational intake | Structured dialogue LLM | 5–6 |
-| Validation therapy knowledge base | Published clinical protocols (Feil, 1993; systematic reviews 2016–2024) | 7 (protocol) / 4 (AI integration) |
+| Validation therapy knowledge base | Published protocols and practice guidelines (Feil, 1993; Alzheimer's Association communication guidance) | 7 (protocol) / 4 (AI integration) |
 | Personalized script generation | Context-aware LLM with profile injection | 4–5 |
 | Technique effectiveness learning | Caregiver feedback loop → model adaptation | 3–4 |
 | Stage progression tracking | Structured symptom reporting + LLM inference | 3–4 |
 | Emotional distress detection + escalation | NLP sentiment analysis → human referral pipeline | 4 |
 
 **Overall application TRL: 3–4.** Validation therapy protocols are mature and published. LLM capabilities for personalized, context-aware conversation are proven. The novel contribution — integrating a care recipient's personal history with clinical communication protocols to generate individualized, moment-specific guidance at scale — is the Phase 1 development target.
+
+**Evidence of readiness.** The functional prototype (linked above) demonstrates the core personalized-coaching capability today — a caregiver enters a scenario and a person-history profile and receives labeled, technique-grounded response options — substantiating the TRL 4 claim for that component. The remaining components (effectiveness learning, stage-progression tracking, distress escalation) are honestly rated TRL 3–4: designed and partially prototyped, but developed and validated during Phase 1, not yet operational. The accompanying Evidence Appendix documents the research and methodology underpinning the design. Throughout, we distinguish what is demonstrable now from what Phase 1 will build, per the Challenge's technology-readiness guidance.
 
 ### 1.5 User Input Documenting Caregiver Challenges
 
@@ -247,6 +251,10 @@ Validation therapy clinicians and geriatric social workers review AI-generated s
 - **Hallucination prevention:** Validation therapy responses are generated within a constrained framework — the LLM selects and adapts from a curated technique library rather than generating freely. This bounds the output space and reduces clinical accuracy risk.
 - **Content audit:** All stage education content reviewed quarterly by clinical editorial board against current peer-reviewed clinical guidelines and dementia care best practices.
 
+### 2.7 Phase 1 Resourcing and Feasibility
+
+Phase 1 is deliberately scoped for lean execution. The core build team is the Principal Investigator plus a contract engineer; specialized expertise is brought in through a compensated advisory panel (a validation-therapy clinician and a geriatric social worker) and partner memory-care facilities rather than full-time hires. Award funds are prioritized, in order: (1) clinical advisory and content review, to ensure therapeutic accuracy; (2) engineering for the personalization and safety infrastructure; (3) participant recruitment and compensation for the co-design panel and outcome cohort; (4) IRB and privacy/compliance review. Because the prototype already demonstrates the core coaching capability, Phase 1 funds validation and safety — not first-build risk. This advisor-and-partner model keeps fixed costs low while surrounding the work with the clinical expertise it requires.
+
 ---
 
 ## Section 3: Usability and Integration
@@ -259,7 +267,7 @@ Wellbeing check-ins do not diagnose, assess, or make clinical determinations. Th
 
 ### 3.2 System Transparency
 
-Every AI-generated script shows its technique label and a plain-language explanation: *"This is a validation response — it acknowledges what your mother is feeling rather than correcting what she believes. Research shows this reduces agitation in most people with mid-stage dementia."* Caregivers understand what the system is doing and why.
+Every AI-generated script shows its technique label and a plain-language explanation: *"This is a validation response — it acknowledges what your mother is feeling rather than correcting what she believes. This approach is widely used in professional dementia care to reduce agitation."* Caregivers understand what the system is doing and why.
 
 Stage education content cites its sources. Caregivers can tap to see the clinical basis for any piece of educational content.
 

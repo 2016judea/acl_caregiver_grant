@@ -36,7 +36,7 @@
 ---
 
 **Brief Solution Description:**
-Dementia Coach is a mobile AI application that translates validation therapy — a clinically proven approach to dementia behavioral management — into personalized, real-time guidance accessible to any family caregiver. Using the care recipient's own life history and personal details, the AI generates tailored communication scripts for the moments that most often escalate into crisis, replacing the reality-orientation approach most families use by default, which clinical evidence shows worsens distress. Analysis of more than 1,237 dementia caregiver narratives identified this as the highest-severity, most-addressable gap in current family caregiver support.
+Dementia Coach is a mobile AI application that translates validation therapy — a widely taught, professionally endorsed approach to dementia behavioral management — into personalized, real-time guidance accessible to any family caregiver. Using the care recipient's own life history and personal details, the AI generates tailored communication scripts for the moments that most often escalate into crisis, replacing the reality-orientation approach most families use by default, which dementia-care guidance widely recognizes as worsening distress. Analysis of more than 1,237 dementia caregiver narratives identified this as the highest-severity, most-addressable gap in current family caregiver support.
 
 **Current TRL:** 3–4
 
