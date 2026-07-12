@@ -42,11 +42,13 @@ Update the **Status** column as you go: `not sent` → `sent [date]` → `replie
 - LeadingAge Minnesota — info@leadingagemn.org · 651-645-4545  → CNA Shield, pilot LOI (template 3)
 
 **Grab the address at the source (do NOT guess an individual's email):**
-- Dr. Joseph Gaugler — copy his `@sph.umn.edu` address from his SPH bio: directory.sph.umn.edu/bio/sph-a-z/joseph-gaugler (fallback: sphcomm@umn.edu)  → Dementia Coach, advisor (template 1)
+- Dr. Joseph Gaugler — gaug0015@umn.edu  → Dementia Coach, advisor (template 1)
+- MN-GWEP — mn-gwep@umn.edu  → either, advisor/letter
+- ICI MN Direct Support Workforce Project — hewit005@umn.edu (Amy Hewitt, director)  → CNA Shield, advisor
+
+**Still need the address (contact form or center page):**
 - BOLD Center on Dementia Caregiving — contact form: bolddementiacaregiving.org/contact/  → Dementia Coach, advisor/letter
-- MN-GWEP — mngwep.umn.edu/about/contact  → either, advisor/letter
 - Center for Aging Science & Care Innovation (Nursing) — nursing.umn.edu/centers/center-aging-science-care-innovation  → either, advisor
-- ICI MN Direct Support Workforce Project — ici.umn.edu/projects/PHLA-EPtTgC7v3b39PKIaw  → CNA Shield, advisor
 
 ## Notes on the ask
 - **Advisor ≠ employee.** You need a *named commitment to advise*, not payroll.
