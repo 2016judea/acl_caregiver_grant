@@ -33,6 +33,21 @@ Update the **Status** column as you go: `not sent` → `sent [date]` → `replie
 
 ---
 
+## Verified send-to addresses (as of 2026-07)
+
+**Direct — send today (general inboxes; open with "please route to the right person"):**
+- Alzheimer's Association, MN–ND — mnnd-info@alz.org · 952.830.0512  → Dementia Coach, letter (template 3)
+- Minnesota Home Care Association — membership@mnhomecare.org · 651-635-0783  → CNA Shield, advisor/pilot (template 2/3)
+- Care Providers of Minnesota — info@careproviders.org · 952-854-2844  → CNA Shield, pilot LOI (template 3)
+- LeadingAge Minnesota — info@leadingagemn.org · 651-645-4545  → CNA Shield, pilot LOI (template 3)
+
+**Grab the address at the source (do NOT guess an individual's email):**
+- Dr. Joseph Gaugler — copy his `@sph.umn.edu` address from his SPH bio: directory.sph.umn.edu/bio/sph-a-z/joseph-gaugler (fallback: sphcomm@umn.edu)  → Dementia Coach, advisor (template 1)
+- BOLD Center on Dementia Caregiving — contact form: bolddementiacaregiving.org/contact/  → Dementia Coach, advisor/letter
+- MN-GWEP — mngwep.umn.edu/about/contact  → either, advisor/letter
+- Center for Aging Science & Care Innovation (Nursing) — nursing.umn.edu/centers/center-aging-science-care-innovation  → either, advisor
+- ICI MN Direct Support Workforce Project — ici.umn.edu/projects/PHLA-EPtTgC7v3b39PKIaw  → CNA Shield, advisor
+
 ## Notes on the ask
 - **Advisor ≠ employee.** You need a *named commitment to advise*, not payroll.
 - **Letters are cold asks, not favors.** A working prototype + real data is your hook.
