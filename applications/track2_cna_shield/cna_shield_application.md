@@ -123,7 +123,7 @@ CNAs log their actual patient assignment at shift start with a single tap (e.g.,
 
 **Overall application TRL: 3–4.** AI ambient documentation for physicians is proven at TRL 7–8. CNA Shield's novel contributions — voice interaction designed for care settings, CNA-specific terminology modeling, anonymous worker-protective reporting — are the Phase 1 development targets, establishing TRL 4 by submission for Phase 2.
 
-**Evidence of readiness.** The functional prototype (linked above) demonstrates the voice-logging and handoff-generation flow today, substantiating the readiness of the documentation core. The components rated TRL 3–4 — the CNA-adapted language model and the anonymous ratio-reporting pipeline — are honestly at the design/early-prototype stage and are explicit Phase 1 development targets, not current capabilities; the higher-rated components (on-device speech recognition, FHIR output, HIPAA infrastructure) reuse mature, widely deployed technology. The accompanying Evidence Appendix documents the underlying research and methodology. Throughout, we distinguish what is demonstrable now from what Phase 1 will build, per the Challenge's technology-readiness guidance.
+**Evidence of readiness.** The functional prototype (linked above) turns raw spoken shift notes into a structured, triaged handoff today — and this is documented, not merely described. The accompanying **Data Output Logs** (supplemental material) capture three full shifts run through the prototype. They show the capability that matters: the tool triages by clinical urgency and invents nothing. In Log 1, a single elevated blood-pressure reading is placed on "watch," while the *same resident's second* elevated reading is escalated to "urgent" with the reason stated — the difference a tired worker at a 1:14 ratio can miss. In Log 2, a fall is surfaced to the top of the handoff; in Log 3, a routine shift correctly produces no urgent items. Every line in every handoff traces back to a spoken note; no vital sign or event is fabricated. This substantiates the voice-to-handoff core at TRL 3. The components still rated TRL 3–4 — the CNA-adapted speech model tuned to care-setting terminology and the anonymous ratio-reporting pipeline — are honestly at the design/early-prototype stage and are explicit Phase 1 development targets, not current capabilities; the higher-rated components (on-device speech recognition, FHIR output, HIPAA infrastructure) reuse mature, widely deployed technology. The accompanying Evidence Appendix documents the underlying research and methodology. Throughout, we distinguish what is demonstrable now from what Phase 1 will build, per the Challenge's technology-readiness guidance.
 
 ### 1.4 Evidence Base and User Input
 
@@ -291,5 +291,7 @@ The interoperability design also addresses the assistive device landscape: Modul
 ---
 
 *Evidence Appendix: See accompanying document "Evidence Appendix: Data Methodology and Findings" submitted with this application.*
+
+*Supplemental Materials: See accompanying document "Data Output Logs" — genuine, reproducible output from the working prototype across three full shifts (does not count toward the page limit).*
 
 *Prototype: https://cna-shield.vercel.app*

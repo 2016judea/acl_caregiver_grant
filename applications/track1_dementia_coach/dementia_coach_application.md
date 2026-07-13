@@ -158,7 +158,7 @@ A brief check-in asks how the caregiver is doing. The AI responds with non-judgm
 
 **Overall application TRL: 3–4.** Validation therapy protocols are mature and published. LLM capabilities for personalized, context-aware conversation are proven. The novel contribution — integrating a care recipient's personal history with clinical communication protocols to generate individualized, moment-specific guidance at scale — is the Phase 1 development target.
 
-**Evidence of readiness.** The functional prototype (linked above) demonstrates the core personalized-coaching capability today — a caregiver enters a scenario and a person-history profile and receives labeled, technique-grounded response options — substantiating the TRL 4 claim for that component. The remaining components (effectiveness learning, stage-progression tracking, distress escalation) are honestly rated TRL 3–4: designed and partially prototyped, but developed and validated during Phase 1, not yet operational. The accompanying Evidence Appendix documents the research and methodology underpinning the design. Throughout, we distinguish what is demonstrable now from what Phase 1 will build, per the Challenge's technology-readiness guidance.
+**Evidence of readiness.** The functional prototype (linked above) demonstrates the core personalized-coaching capability today — a caregiver enters a scenario and a person-history profile and receives labeled, technique-grounded response options — substantiating the TRL 4 claim for that component. This is not a description; it is documented. The accompanying **Data Output Logs** (supplemental material) capture eight real runs of the prototype across the exact pain points in our evidence base — reality-orientation harm, a deceased-spouse grief episode, bath refusal, sundowning, and usefulness distress. In every case the tool joins the person's reality rather than correcting it and grounds each response in the care recipient's specific history: for the grief episode (Log 2), it produces three options that hold Margaret's love for her late husband without re-delivering the fact of his death; for the anchor scenario (Log 1), it converts "she needs to pick up the kids" into reminiscence and gentle redirection tied to her identity as a teacher and mother. The logs are reproducible at the prototype URL. The remaining components (effectiveness learning, stage-progression tracking, distress escalation) are honestly rated TRL 3–4: designed and partially prototyped, but developed and validated during Phase 1, not yet operational. The accompanying Evidence Appendix documents the research and methodology underpinning the design. Throughout, we distinguish what is demonstrable now from what Phase 1 will build, per the Challenge's technology-readiness guidance.
 
 ### 1.5 User Input Documenting Caregiver Challenges
 
@@ -326,5 +326,7 @@ Our analysis of 1,237 dementia caregiver posts constitutes the largest community
 ---
 
 *Evidence Appendix: See accompanying document "Evidence Appendix: Data Methodology and Findings" submitted with this application.*
+
+*Supplemental Materials: See accompanying document "Data Output Logs" — genuine, reproducible output from the working prototype across eight real caregiving scenarios (does not count toward the page limit).*
 
 *Prototype: https://dementia-coach.vercel.app*

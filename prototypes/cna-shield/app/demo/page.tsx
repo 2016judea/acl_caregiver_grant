@@ -38,17 +38,62 @@ function getNow() {
   return new Date().toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
 }
 
+interface AiHandoffItem {
+  room?: string;
+  note: string;
+  why?: string;
+}
+interface AiHandoff {
+  urgent: AiHandoffItem[];
+  watch: AiHandoffItem[];
+  routine: AiHandoffItem[];
+  ratio: { over_limit: boolean; assigned: number; legal: number; over_by: number; summary: string };
+}
+
 export default function DemoPage() {
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [listening, setListening] = useState(false);
   const [nextIndex, setNextIndex] = useState(0);
   const [handoffExpanded, setHandoffExpanded] = useState(false);
+  const [aiHandoff, setAiHandoff] = useState<AiHandoff | null>(null);
+  const [generating, setGenerating] = useState(false);
+  const [genError, setGenError] = useState(false);
   const shiftTimer = useShiftTimer();
 
   const residentCount = 14;
   const ratio = `1:${residentCount}`;
   const legalLimit = "1:8";
   const ratioOverLimit = residentCount > 8;
+
+  async function generateHandoff() {
+    if (logs.length === 0) return;
+    if (aiHandoff) {
+      setHandoffExpanded((v) => !v);
+      return;
+    }
+    setGenerating(true);
+    setGenError(false);
+    try {
+      // Send the raw spoken notes (oldest first) to the real AI backend.
+      const notes = [...logs].reverse().map((l) => l.text);
+      const res = await fetch("/api/handoff", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ notes, assigned: residentCount, legal: 8 }),
+      });
+      const data = await res.json();
+      if (data.handoff) {
+        setAiHandoff(data.handoff);
+        setHandoffExpanded(true);
+      } else {
+        setGenError(true);
+      }
+    } catch {
+      setGenError(true);
+    } finally {
+      setGenerating(false);
+    }
+  }
 
   function handleMicTap() {
     if (listening || nextIndex >= PRESET_ENTRIES.length) return;
@@ -183,11 +228,18 @@ export default function DemoPage() {
             </div>
             {logs.length > 0 && (
               <button
-                onClick={() => setHandoffExpanded(!handoffExpanded)}
-                className="text-xs px-3 py-1.5 rounded-lg font-medium text-white transition-all hover:opacity-90"
+                onClick={generateHandoff}
+                disabled={generating}
+                className="text-xs px-3 py-1.5 rounded-lg font-medium text-white transition-all hover:opacity-90 disabled:opacity-60"
                 style={{ backgroundColor: "#1B2B4B" }}
               >
-                {handoffExpanded ? "Collapse" : "Full Handoff"}
+                {generating
+                  ? "Generating…"
+                  : aiHandoff
+                  ? handoffExpanded
+                    ? "Collapse"
+                    : "Full Handoff"
+                  : "Generate Full Handoff"}
               </button>
             )}
           </div>
@@ -288,7 +340,14 @@ export default function DemoPage() {
                 )}
               </div>
 
-              {handoffExpanded && (
+              {genError && (
+                <p className="text-xs" style={{ color: "#DC2626" }}>
+                  Couldn&apos;t reach the handoff service. Check the ANTHROPIC_API_KEY
+                  environment variable on the deployment and try again.
+                </p>
+              )}
+
+              {handoffExpanded && aiHandoff && (
                 <div
                   className="rounded-xl p-4 text-sm"
                   style={{
@@ -297,18 +356,62 @@ export default function DemoPage() {
                     animation: "fadeIn 0.3s ease-out",
                   }}
                 >
-                  <p className="font-semibold mb-2" style={{ color: "#1B2B4B" }}>
-                    Full Handoff Report
+                  <p className="font-semibold mb-1" style={{ color: "#1B2B4B" }}>
+                    AI-Generated Shift Handoff
                   </p>
                   <p className="text-xs mb-3" style={{ color: "#64748B" }}>
-                    Shift end: {getNow()} · Duration: {shiftTimer}
+                    Shift end: {getNow()} · Duration: {shiftTimer} · triaged by CNA Shield AI
                   </p>
-                  {logs.map((e, i) => (
-                    <p key={i} className="py-1" style={{ color: "#1E293B", borderBottom: i < logs.length - 1 ? "1px solid #E2E8F0" : "none" }}>
-                      <span className="font-mono text-xs mr-2" style={{ color: "#64748B" }}>{e.time}</span>
-                      {e.text}
+
+                  {aiHandoff.urgent?.length > 0 && (
+                    <div className="mb-2">
+                      <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: "#DC2626" }}>
+                        🔴 Urgent
+                      </p>
+                      {aiHandoff.urgent.map((e, i) => (
+                        <p key={i} className="py-0.5" style={{ color: "#1E293B" }}>
+                          {e.room ? <span className="font-semibold">{e.room}: </span> : null}
+                          {e.note}
+                          {e.why ? <span style={{ color: "#DC2626" }}> — {e.why}</span> : null}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+
+                  {aiHandoff.watch?.length > 0 && (
+                    <div className="mb-2">
+                      <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: "#D97706" }}>
+                        ⚠ Watch
+                      </p>
+                      {aiHandoff.watch.map((e, i) => (
+                        <p key={i} className="py-0.5" style={{ color: "#1E293B" }}>
+                          {e.room ? <span className="font-semibold">{e.room}: </span> : null}
+                          {e.note}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+
+                  {aiHandoff.routine?.length > 0 && (
+                    <div className="mb-2">
+                      <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: "#16A34A" }}>
+                        ✓ Routine
+                      </p>
+                      {aiHandoff.routine.map((e, i) => (
+                        <p key={i} className="py-0.5" style={{ color: "#1E293B" }}>
+                          {e.room ? <span className="font-semibold">{e.room}: </span> : null}
+                          {e.note}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+
+                  {aiHandoff.ratio?.summary && (
+                    <p className="text-xs mt-2 pt-2" style={{ color: "#64748B", borderTop: "1px solid #E2E8F0" }}>
+                      {aiHandoff.ratio.summary}
                     </p>
-                  ))}
+                  )}
+
                   <div className="mt-3 pt-3" style={{ borderTop: "1px solid #E2E8F0" }}>
                     <button
                       className="w-full py-2 rounded-lg text-sm font-medium text-white"

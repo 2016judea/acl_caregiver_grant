@@ -330,14 +330,28 @@ def build_track(key):
     appx_path = d / f"{cfg['stem']}_Evidence_Appendix.docx"
     ap.save(appx_path)
 
-    return sub_path, appx_path, abstract
+    # ---- Data Output Logs (supplemental; does not count toward page limit) ----
+    logs_path = None
+    logs_md_file = d / f"{cfg['stem'].lower()}_data_output_logs.md"
+    if logs_md_file.exists():
+        lg = Document()
+        set_default_language(lg)
+        lg.core_properties.title = cfg["title"] + " — Data Output Logs"
+        render_markdown(lg, logs_md_file.read_text())
+        logs_path = d / f"{cfg['stem']}_Data_Output_Logs.docx"
+        lg.save(logs_path)
+
+    return sub_path, appx_path, logs_path, abstract
 
 if __name__ == "__main__":
     for key in ("dementia", "cna"):
-        sub, appx, abstract = build_track(key)
+        sub, appx, logs, abstract = build_track(key)
         print(f"\n=== {key.upper()} ===  abstract words: {wc(abstract)}")
-        for label, path, limit in (("Submission (narrative ≤15pp)", sub, 15),
-                                    ("Evidence Appendix", appx, None)):
+        outputs = [("Submission (narrative ≤15pp)", sub, 15),
+                   ("Evidence Appendix", appx, None)]
+        if logs is not None:
+            outputs.append(("Data Output Logs (supplemental)", logs, None))
+        for label, path, limit in outputs:
             dg = diagnose(path)
             flag = ""
             if limit and dg["est_pages"] > limit:
