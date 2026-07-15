@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
 interface LogEntry {
   time: string;
   text: string;
-  urgency: "green" | "amber" | "red";
+  urgency: "green" | "amber" | "red" | "neutral";
 }
 
 const PRESET_ENTRIES: LogEntry[] = [
@@ -21,6 +21,7 @@ const URGENCY_COLORS = {
   green: { icon: "✓", color: "#16A34A", bg: "#F0FDF4", border: "#BBF7D0" },
   amber: { icon: "⚠", color: "#D97706", bg: "#FFFBEB", border: "#FDE68A" },
   red: { icon: "🔴", color: "#DC2626", bg: "#FEF2F2", border: "#FECACA" },
+  neutral: { icon: "•", color: "#64748B", bg: "#F1F5F9", border: "#E2E8F0" },
 };
 
 function useShiftTimer() {
@@ -58,12 +59,54 @@ export default function DemoPage() {
   const [aiHandoff, setAiHandoff] = useState<AiHandoff | null>(null);
   const [generating, setGenerating] = useState(false);
   const [genError, setGenError] = useState(false);
+  const [micSupported, setMicSupported] = useState(false);
+  const [noteText, setNoteText] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const recognitionRef = useRef<any>(null);
   const shiftTimer = useShiftTimer();
 
   const residentCount = 14;
   const ratio = `1:${residentCount}`;
   const legalLimit = "1:8";
   const ratioOverLimit = residentCount > 8;
+
+  // Add a raw note to the log and invalidate any stale AI handoff.
+  function pushLog(text: string, urgency: LogEntry["urgency"] = "neutral") {
+    const t = text.trim();
+    if (!t) return;
+    setLogs((prev) => [{ time: getNow(), text: t, urgency }, ...prev]);
+    setAiHandoff(null);
+    setHandoffExpanded(false);
+  }
+
+  // Wire the browser's built-in speech recognition (Chrome/Edge/Safari).
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const w = window as any;
+    const SR = w.SpeechRecognition || w.webkitSpeechRecognition;
+    if (!SR) return;
+    setMicSupported(true);
+    const r = new SR();
+    r.lang = "en-US";
+    r.interimResults = false;
+    r.maxAlternatives = 1;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    r.onresult = (e: any) => {
+      const transcript = e.results?.[0]?.[0]?.transcript ?? "";
+      pushLog(transcript);
+    };
+    r.onerror = () => setListening(false);
+    r.onend = () => setListening(false);
+    recognitionRef.current = r;
+    return () => {
+      try {
+        r.stop();
+      } catch {
+        /* noop */
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   async function generateHandoff() {
     if (logs.length === 0) return;
@@ -96,19 +139,31 @@ export default function DemoPage() {
   }
 
   function handleMicTap() {
-    if (listening || nextIndex >= PRESET_ENTRIES.length) return;
+    if (listening) return;
+    // Real speech recognition where the browser supports it.
+    if (micSupported && recognitionRef.current) {
+      setListening(true);
+      try {
+        recognitionRef.current.start();
+      } catch {
+        setListening(false);
+      }
+      return;
+    }
+    // Fallback for browsers without the Web Speech API: play back sample notes.
+    if (nextIndex >= PRESET_ENTRIES.length) return;
     setListening(true);
     setTimeout(() => {
-      const entry = { ...PRESET_ENTRIES[nextIndex], time: getNow() };
-      setLogs((prev) => [entry, ...prev]);
+      const entry = PRESET_ENTRIES[nextIndex];
+      pushLog(entry.text, entry.urgency);
       setNextIndex((i) => i + 1);
       setListening(false);
-    }, 2500);
+    }, 2000);
   }
 
   const urgentEntries = logs.filter((l) => l.urgency === "red");
   const watchEntries = logs.filter((l) => l.urgency === "amber");
-  const allDone = nextIndex >= PRESET_ENTRIES.length;
+  const fallbackDone = !micSupported && nextIndex >= PRESET_ENTRIES.length;
 
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: "#F8FAFC" }}>
@@ -160,11 +215,11 @@ export default function DemoPage() {
               )}
               <button
                 onClick={handleMicTap}
-                disabled={listening || allDone}
+                disabled={listening || fallbackDone}
                 className="relative w-20 h-20 rounded-full text-3xl text-white flex items-center justify-center shadow-lg transition-all active:scale-95"
                 style={{
-                  backgroundColor: listening ? "#DC2626" : allDone ? "#94A3B8" : "#1B2B4B",
-                  cursor: listening || allDone ? "not-allowed" : "pointer",
+                  backgroundColor: listening ? "#DC2626" : fallbackDone ? "#94A3B8" : "#1B2B4B",
+                  cursor: listening || fallbackDone ? "not-allowed" : "pointer",
                 }}
               >
                 {listening ? "⏺" : "🎙"}
@@ -172,11 +227,46 @@ export default function DemoPage() {
             </div>
             <p className="mt-3 text-sm text-center" style={{ color: "#64748B" }}>
               {listening
-                ? "Listening…"
-                : allDone
-                ? "Shift log complete"
+                ? micSupported
+                  ? "Listening… speak your note"
+                  : "Listening…"
+                : fallbackDone
+                ? "Sample log complete"
+                : micSupported
+                ? "Tap and speak a care note"
                 : "Tap to log care"}
             </p>
+            <p className="mt-1 text-xs text-center" style={{ color: "#94A3B8" }}>
+              {micSupported
+                ? "Live voice input (your browser's speech recognition)"
+                : "Voice input needs Chrome, Edge, or Safari — type a note below instead"}
+            </p>
+
+            {/* Typed-note fallback — works in every browser */}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                pushLog(noteText);
+                setNoteText("");
+              }}
+              className="mt-3 flex gap-2"
+            >
+              <input
+                value={noteText}
+                onChange={(e) => setNoteText(e.target.value)}
+                placeholder="…or type a care note (e.g. Room 214 BP 150/95)"
+                className="flex-1 rounded-lg px-3 py-2 text-sm focus:outline-none"
+                style={{ border: "1px solid #E2E8F0", color: "#1E293B" }}
+              />
+              <button
+                type="submit"
+                disabled={!noteText.trim()}
+                className="px-3 py-2 rounded-lg text-sm font-medium text-white disabled:opacity-50"
+                style={{ backgroundColor: "#1B2B4B" }}
+              >
+                Add
+              </button>
+            </form>
           </div>
 
           {/* Log entries */}
