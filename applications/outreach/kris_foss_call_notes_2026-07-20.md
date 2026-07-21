@@ -66,3 +66,13 @@ EMRs could be interested in this. Native integration with it.
 
 3. **Letter of support + pilot path.** Kris is going to write the letter of support herself, and she's also the connector for lining up a (possible series of) pilots if the application is awarded. She already has ideas for who/what that would look like and intends to fold that into her letter.
    - Action: update the application to reflect this real, named path to piloting — that we're now connected to Kris/Amy's office at ICI with a credible pilot plan, not just a cold prototype.
+
+---
+
+## Compensation structure — confirmed 2026-07-21
+
+Asked Kris directly whether to structure her compensation personally or as a consulting arrangement/subaward through ICI. Her answer, verbatim: **"I think it would make the most sense for me to be added as a consultant from ICI/Univ. of MN rather than personally."**
+
+**Why this matters:** universities generally require outside compensation for faculty/staff work tied to their institutional role to run through the university (sponsored programs / outside consulting rules), not as a personal payment — this is Kris self-selecting the compliant path.
+
+**How to apply:** if awarded, any Phase 2 budget or contracting involving Kris must be structured as a UMN/ICI institutional subaward or consulting agreement — not a 1099/personal-services arrangement. Section 2.5's current phrasing ("Kristine Foss, Direct Support Workforce Solutions, University of Minnesota Institute on Community Integration") already reflects this correctly (names her institutional affiliation, not her personally) — no application text change needed now, but flag this when Phase 2 budget/subaward planning starts.

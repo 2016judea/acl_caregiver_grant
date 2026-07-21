@@ -247,8 +247,8 @@ export default function Home() {
           >
             BLS groups these roles under related direct-care occupational
             codes; this cross-role framing was confirmed in conversation with
-            Kristine Foss and the direct support workforce team at UMN&rsquo;s
-            Institute on Community Integration.
+            the direct support workforce team at UMN&rsquo;s Institute on
+            Community Integration.
           </p>
         </section>
       </main>
