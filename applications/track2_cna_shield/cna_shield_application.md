@@ -92,6 +92,8 @@ Legal staffing ratios (1:8 in many states) are routinely violated. Our analysis 
 
 CNAs who report unsafe conditions risk termination. The CNA who submitted a state report described needing to include her name in the submission email — making the "anonymous" report traceable. Without objective, timestamped, aggregated evidence, ratio violation reports are dismissed as disgruntled worker complaints.
 
+**Beyond CNAs: a shared direct-care pattern.** CNA Shield's evidence base above is CNA-specific — 6,333 posts drawn from CNA and adjacent caregiver communities — and CNA is Phase 1's pilot role. But the underlying failure mode is not unique to CNAs. In discussion with Kristine Foss and Dr. Amy Hewitt at the University of Minnesota's Institute on Community Integration (ICI), whose Direct Support Workforce Solutions team works across the intellectual/developmental disability and home health direct care workforce, the same pattern recurred: Direct Support Professionals (DSPs), Home Health Aides, and Community Support Professionals (CSPs) perform structurally identical hands-on, documentation-heavy shift work, often with even less formal training than CNAs receive. The Bureau of Labor Statistics groups these roles under related direct-care occupational categories, and ACL itself has been pursuing cross-sector workforce tooling standardization. CNA Shield's voice-first mechanic — speak while working, structured entry, auto-generated handoff — is role-agnostic by design; Phase 1 pilots it with CNAs specifically because that is where the deepest evidence base and TRL readiness already exist, not because the mechanism is CNA-specific. The working prototype demonstrates this directly.
+
 ### 1.2 The AI Solution
 
 CNA Shield is a HIPAA-compliant mobile application (iOS and Android) with three integrated modules.
@@ -175,6 +177,8 @@ Phase 1 evaluation uses a pre-post design across two partner facilities:
 
 **A note on adoption incentives.** CNA Shield is worker-first: the app is free to individual CNAs permanently and works whether or not their facility participates. Facility licensing pays for the enterprise documentation and handoff infrastructure — complete, timestamped care records that reduce a facility's own liability and survey-deficiency risk and support CNA retention. That is the facility value proposition, and it is independent of Module 3. The ratio-reporting function is worker-owned, worker-initiated, and anonymized; facilities neither control nor pay for it, and facilities that staff to legal ratios have nothing to surface. This mirrors how confidential safety-reporting systems such as the FAA's Aviation Safety Reporting System coexist with — and are trusted precisely because they remain independent of — the organizations they help improve.
 
+**A note on the FHIR-native investment.** Phase 1's decision to structure all data in FHIR R4 format from the outset (Section 1.3) is not only a technical interoperability requirement — it is a distribution strategy. In discussion with Kristine Foss and the direct support workforce team at UMN's Institute on Community Integration, whose work spans the EMR landscape used across intellectual/developmental disability and home health provider organizations (including systems like THERAP), a recurring pattern emerged: post-ACA consolidation has pushed provider organizations toward standardized EMR platforms, and those platforms have strong incentive to natively integrate — and resell — tools like CNA Shield rather than build equivalent voice documentation themselves. A FHIR-native architecture positions CNA Shield as a plug-in an EMR vendor can adopt and distribute to its existing customer base, not merely a standalone app seeking facility-by-facility adoption.
+
 ### 2.3 User-Centered Design Integration
 
 **Phase 1 co-design stages:**
@@ -211,9 +215,11 @@ Structured workshops with 20 CNAs across 3 facility types (SNF, memory care, hom
 | Lead Engineer | Voice pipeline, LLM fine-tuning, HIPAA-compliant infrastructure, FHIR integration |
 | Clinical Advisor | CNA terminology accuracy, care documentation standards, facility protocol alignment |
 | UX / User Research | Participatory design facilitation, usability testing, interaction design |
-| Workforce Partner | CNA recruitment, trust-building, worker-protective governance design |
+| Workforce Partner | Kristine Foss, Direct Support Workforce Solutions, University of Minnesota Institute on Community Integration (ICI) — CNA/DSP recruitment and trust-building, worker-protective governance design informed by ICI's cross-sector direct care workforce expertise |
 
-*Additional team members will be recruited and onboarded during Phase 1 foundation months (clinical advisor, UX researcher, workforce partner). Biographical sketches will be updated upon recruitment.*
+CNA Shield is in active collaboration with ICI, the University of Minnesota's designated University Center for Excellence in Developmental Disabilities, led on this project by Amy Hewitt (ICI Director) and Kristine Foss (Direct Support Workforce Solutions). ICI reviewed the working prototype and is preparing a letter of support (forthcoming) reflecting this collaboration.
+
+*Additional team members will be recruited and onboarded during Phase 1 foundation months (clinical advisor, UX researcher). Biographical sketches will be updated upon recruitment.*
 
 ### 2.6 Safety and Bias Mitigation Monitoring
 

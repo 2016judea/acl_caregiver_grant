@@ -3,6 +3,33 @@
 import { useState } from "react";
 import Link from "next/link";
 
+const CROSS_ROLE_ROLES = [
+  {
+    name: "CNA",
+    full: "Certified Nursing Assistant",
+    pain: "Hands-on care, zero hands free to chart — the story above.",
+    current: true,
+  },
+  {
+    name: "DSP",
+    full: "Direct Support Professional",
+    pain: "Same documentation gap, disability services setting — often with less formal training to begin with.",
+    current: false,
+  },
+  {
+    name: "HHA",
+    full: "Home Health Aide",
+    pain: "Solo visits, no handoff partner at all — the record is the only continuity a client has.",
+    current: false,
+  },
+  {
+    name: "CSP",
+    full: "Community Support Professional",
+    pain: "Same hands-free constraint, community and residential care settings.",
+    current: false,
+  },
+];
+
 export default function Home() {
   const [revealed, setRevealed] = useState(false);
 
@@ -165,6 +192,65 @@ export default function Home() {
             </div>
           </div>
         )}
+
+        {/* Cross-role section */}
+        <section className="mt-16 pt-2">
+          <div className="flex items-baseline justify-between mb-5 gap-4">
+            <h3 className="text-lg font-bold" style={{ color: "#1E293B" }}>
+              Marcus&rsquo;s shift isn&rsquo;t unique to CNAs.
+            </h3>
+            <span
+              className="text-xs font-mono whitespace-nowrap hidden sm:inline"
+              style={{ color: "#64748B" }}
+            >
+              Source: BLS · UMN ICI
+            </span>
+          </div>
+
+          <div
+            className="grid grid-cols-2 sm:grid-cols-4"
+            style={{ borderTop: "1px solid #E2E8F0" }}
+          >
+            {CROSS_ROLE_ROLES.map((role, i) => (
+              <div
+                key={role.name}
+                className={`px-4 pt-5 pb-1 ${
+                  i === 1 || i === 3
+                    ? "border-l border-l-[#E2E8F0]"
+                    : i === 2
+                    ? "sm:border-l sm:border-l-[#E2E8F0]"
+                    : ""
+                }`}
+              >
+                <p
+                  className="text-sm font-bold mb-0.5"
+                  style={{ color: role.current ? "#128038" : "#1E293B" }}
+                >
+                  {role.name}
+                </p>
+                <p className="text-xs mb-2.5" style={{ color: "#64748B" }}>
+                  {role.full}
+                </p>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: "#1E293B" }}
+                >
+                  {role.pain}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p
+            className="mt-5 text-xs leading-relaxed"
+            style={{ color: "#64748B" }}
+          >
+            BLS groups these roles under related direct-care occupational
+            codes; this cross-role framing was confirmed in conversation with
+            Kristine Foss and the direct support workforce team at UMN&rsquo;s
+            Institute on Community Integration.
+          </p>
+        </section>
       </main>
     </div>
   );
