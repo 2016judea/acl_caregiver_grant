@@ -1,15 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #FAF7F2;
-  --color-cream-dark: #F0EDE6;
-  --color-sage: #7A9E7E;
-  --color-sage-dark: #5A7E5E;
-  --color-warm-dark: #3D2B1F;
-  --color-text: #2C2C2C;
-  --color-text-muted: #6B6B6B;
-  --color-border: #E8E2D9;
-  --color-gold: #C4956A;
+  --color-bg: #EEF2F0;
+  --color-surface: #FFFFFF;
+  --color-border: #DAE2DE;
+  --color-ink: #16231F;
+  --color-ink-muted: #5C6D67;
+  --color-teal: #1E6E68;
+  --color-teal-soft: #E3EFEC;
+  --color-coral: #B5574B;
+  --color-coral-soft: #F3E3E0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #101715;
+    --color-surface: #17211E;
+    --color-border: #26332F;
+    --color-ink: #E7EFEC;
+    --color-ink-muted: #93A39D;
+    --color-teal: #4FB3AA;
+    --color-teal-soft: #1B2C29;
+    --color-coral: #E08A7D;
+    --color-coral-soft: #3A2420;
+  }
 }
 
 @keyframes fadeInUp {
@@ -23,19 +37,22 @@
   }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes pulse-soft {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 body {
-  background-color: #FAF7F2;
-  color: #2C2C2C;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: "Avenir Next", Optima, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 18px;
   line-height: 1.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }

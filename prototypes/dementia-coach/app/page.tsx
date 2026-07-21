@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 interface Script {
   technique: string;
@@ -15,33 +16,58 @@ const PRESETS = [
   "She's very agitated and wants to 'go home'",
 ];
 
+const TECHNIQUE_ICONS: Record<string, string> = {
+  Validation: "✓",
+  Reminiscence: "◐",
+  "Identity Affirmation": "★",
+  "Gentle Redirection": "→",
+  "Joining Their Reality": "◎",
+};
+
+function LogoMark() {
+  return (
+    <div className="relative w-[26px] h-[26px] flex-shrink-0">
+      <span
+        className="absolute top-0 left-0 w-4 h-4 rounded-full"
+        style={{ backgroundColor: "var(--color-teal)", opacity: 0.85 }}
+      />
+      <span
+        className="absolute bottom-0 right-0 w-4 h-4 rounded-full"
+        style={{ backgroundColor: "var(--color-coral)", opacity: 0.7 }}
+      />
+    </div>
+  );
+}
+
 function ProfileCard() {
   return (
     <div
-      className="rounded-2xl p-6 h-fit sticky top-6"
-      style={{ backgroundColor: "#F0EDE6", border: "1px solid #E8E2D9" }}
+      className="rounded-2xl p-5 h-fit sticky top-6 shadow-sm"
+      style={{ backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)" }}
     >
-      <div className="flex items-center gap-4 mb-5">
-        <div
-          className="w-16 h-16 rounded-full flex items-center justify-center text-3xl flex-shrink-0"
-          style={{ backgroundColor: "#E8E2D9" }}
-        >
-          👵
-        </div>
-        <div>
-          <h2 className="text-xl font-semibold" style={{ color: "#2C2C2C" }}>
-            Margaret
-          </h2>
-          <p className="text-sm" style={{ color: "#6B6B6B" }}>
-            79 · Mid-stage Alzheimer&rsquo;s
-          </p>
-        </div>
+      <div
+        className="w-13 h-13 rounded-xl flex items-center justify-center text-lg font-bold mb-3"
+        style={{ backgroundColor: "var(--color-teal-soft)", color: "var(--color-teal)", width: 52, height: 52 }}
+      >
+        M
       </div>
+      <h2 className="text-[19px] font-bold tracking-tight" style={{ color: "var(--color-ink)" }}>
+        Margaret
+      </h2>
+      <span
+        className="inline-block text-xs font-semibold rounded-full px-2.5 py-0.5 mt-1.5"
+        style={{ backgroundColor: "var(--color-teal-soft)", color: "var(--color-teal)" }}
+      >
+        79 · Mid-stage Alzheimer&rsquo;s
+      </span>
 
-      <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "#7A9E7E" }}>
+      <p
+        className="text-[11px] font-bold uppercase tracking-wider mt-4 mb-2"
+        style={{ color: "var(--color-ink-muted)" }}
+      >
         Who she was
       </p>
-      <ul className="space-y-2 text-sm" style={{ color: "#2C2C2C" }}>
+      <ul className="flex flex-col gap-1.5 text-sm" style={{ color: "var(--color-ink)" }}>
         {[
           "Retired schoolteacher, 35 years",
           "Loved gardening — roses especially",
@@ -49,26 +75,25 @@ function ProfileCard() {
           "Husband: Robert, passed 2019",
           "Two daughters, both in their 40s",
         ].map((item) => (
-          <li key={item} className="flex gap-2">
-            <span style={{ color: "#7A9E7E", flexShrink: 0 }}>•</span>
-            <span>{item}</span>
+          <li key={item} className="relative pl-3.5">
+            <span
+              className="absolute left-0 top-[7px] w-[5px] h-[5px] rounded-full"
+              style={{ backgroundColor: "var(--color-teal)" }}
+            />
+            {item}
           </li>
         ))}
       </ul>
 
-      <div className="mt-5 pt-5" style={{ borderTop: "1px solid #E8E2D9" }}>
-        <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "#7A9E7E" }}>
-          Calmed by
-        </p>
-        <p className="text-sm" style={{ color: "#2C2C2C" }}>
+      <div className="flex flex-col gap-2 mt-4">
+        <div className="rounded-xl px-3 py-2.5 text-sm" style={{ backgroundColor: "var(--color-teal-soft)", color: "var(--color-ink)" }}>
+          <b className="block text-[11px] uppercase tracking-wide mb-0.5 opacity-75">Calmed by</b>
           Kitchen activity, talking about her garden
-        </p>
-        <p className="text-xs font-semibold uppercase tracking-wider mb-2 mt-3" style={{ color: "#C0605A" }}>
-          Agitated by
-        </p>
-        <p className="text-sm" style={{ color: "#2C2C2C" }}>
+        </div>
+        <div className="rounded-xl px-3 py-2.5 text-sm" style={{ backgroundColor: "var(--color-coral-soft)", color: "var(--color-ink)" }}>
+          <b className="block text-[11px] uppercase tracking-wide mb-0.5 opacity-75">Agitated by</b>
           Being told she&rsquo;s wrong, loud noises
-        </p>
+        </div>
       </div>
     </div>
   );
@@ -85,33 +110,45 @@ function ScriptCard({ script, index }: { script: Script; index: number }) {
 
   return (
     <div
-      className="bg-white rounded-xl p-5 shadow-sm"
+      className="flex gap-3 rounded-2xl p-4 shadow-sm"
       style={{
-        borderLeft: "4px solid #7A9E7E",
-        animation: `fadeInUp 0.4s ease-out ${index * 0.12}s both`,
+        backgroundColor: "var(--color-surface)",
+        border: "1px solid var(--color-border)",
+        animation: `fadeInUp 0.35s ease-out ${index * 0.08}s both`,
       }}
     >
-      <div className="flex items-start justify-between gap-3 mb-2">
-        <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#7A9E7E" }}>
-          {script.technique}
-        </p>
-        <button
-          onClick={handleCopy}
-          className="text-xs px-3 py-1 rounded-full flex-shrink-0 transition-all"
-          style={{
-            backgroundColor: copied ? "#7A9E7E" : "#F0EDE6",
-            color: copied ? "#fff" : "#6B6B6B",
-          }}
-        >
-          {copied ? "✓ Copied" : "Copy"}
-        </button>
+      <div
+        className="w-[34px] h-[34px] rounded-[10px] flex items-center justify-center text-[15px] flex-shrink-0"
+        style={{ backgroundColor: "var(--color-teal-soft)", color: "var(--color-teal)" }}
+      >
+        {TECHNIQUE_ICONS[script.technique] ?? "•"}
       </div>
-      <p className="italic mb-3 leading-relaxed" style={{ color: "#2C2C2C" }}>
-        &ldquo;{script.script}&rdquo;
-      </p>
-      <p className="text-sm" style={{ color: "#6B6B6B" }}>
-        {script.explanation}
-      </p>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-start justify-between gap-3 mb-1.5">
+          <p className="text-[11px] font-bold uppercase tracking-wider" style={{ color: "var(--color-teal)" }}>
+            {script.technique}
+          </p>
+          <button
+            onClick={handleCopy}
+            className="text-xs px-3 py-1 rounded-full flex-shrink-0 transition-all font-medium"
+            style={{
+              backgroundColor: copied ? "var(--color-teal)" : "var(--color-teal-soft)",
+              color: copied ? "#fff" : "var(--color-teal)",
+            }}
+          >
+            {copied ? "✓ Copied" : "Copy"}
+          </button>
+        </div>
+        <p
+          className="mb-2 leading-relaxed text-[17px]"
+          style={{ color: "var(--color-ink)", fontFamily: '"Iowan Old Style", Palatino, Georgia, serif' }}
+        >
+          &ldquo;{script.script}&rdquo;
+        </p>
+        <p className="text-sm" style={{ color: "var(--color-ink-muted)" }}>
+          {script.explanation}
+        </p>
+      </div>
     </div>
   );
 }
@@ -150,20 +187,32 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#FAF7F2" }}>
-      <header className="px-6 py-4" style={{ borderBottom: "1px solid #E8E2D9" }}>
-        <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <p className="text-lg font-semibold" style={{ color: "#2C2C2C" }}>
-            Dementia Coach
-          </p>
-          <p className="text-sm hidden sm:block" style={{ color: "#6B6B6B" }}>
-            Margaret&rsquo;s profile is pre-loaded
-          </p>
+    <div className="min-h-screen" style={{ backgroundColor: "var(--color-bg)" }}>
+      <header className="px-6 py-4" style={{ backgroundColor: "var(--color-surface)", borderBottom: "1px solid var(--color-border)" }}>
+        <div className="max-w-5xl mx-auto flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5">
+            <LogoMark />
+            <p className="text-base font-bold tracking-tight" style={{ color: "var(--color-ink)" }}>
+              Dementia Coach
+            </p>
+          </div>
+          <div className="flex items-center gap-4">
+            <p className="text-sm hidden sm:block" style={{ color: "var(--color-ink-muted)" }}>
+              Margaret&rsquo;s profile is pre-loaded
+            </p>
+            <Link
+              href="/demo"
+              className="text-sm font-semibold px-3 py-1.5 rounded-full transition-colors"
+              style={{ backgroundColor: "var(--color-teal-soft)", color: "var(--color-teal)" }}
+            >
+              Try another persona →
+            </Link>
+          </div>
         </div>
       </header>
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-5">
           {/* Profile panel */}
           <div className="md:col-span-2">
             <ProfileCard />
@@ -172,22 +221,22 @@ export default function Home() {
           {/* Coaching interface */}
           <div className="md:col-span-3 space-y-5">
             <div>
-              <label className="block text-sm font-medium mb-2" style={{ color: "#2C2C2C" }}>
+              <label className="block text-sm font-semibold mb-2" style={{ color: "var(--color-ink)" }}>
                 Describe what&rsquo;s happening right now
               </label>
               <textarea
                 value={situation}
                 onChange={(e) => setSituation(e.target.value)}
                 placeholder="e.g. She keeps asking where her mother is. She's very upset."
-                className="w-full rounded-xl p-4 text-base resize-none focus:outline-none transition-shadow"
+                className="w-full rounded-2xl p-4 text-base resize-none focus:outline-none transition-shadow"
                 rows={3}
                 style={{
-                  backgroundColor: "#fff",
-                  border: "1px solid #E8E2D9",
-                  color: "#2C2C2C",
+                  backgroundColor: "var(--color-surface)",
+                  border: "1px solid var(--color-border)",
+                  color: "var(--color-ink)",
                 }}
                 onFocus={(e) =>
-                  (e.target.style.boxShadow = "0 0 0 2px #7A9E7E44")
+                  (e.target.style.boxShadow = "0 0 0 3px color-mix(in srgb, var(--color-teal) 20%, transparent)")
                 }
                 onBlur={(e) => (e.target.style.boxShadow = "none")}
               />
@@ -195,7 +244,7 @@ export default function Home() {
 
             {/* Preset buttons */}
             <div>
-              <p className="text-xs uppercase tracking-wider mb-2" style={{ color: "#6B6B6B" }}>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "var(--color-ink-muted)" }}>
                 Or try a common scenario
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -203,14 +252,14 @@ export default function Home() {
                   <button
                     key={preset}
                     onClick={() => handlePreset(preset)}
-                    className="text-left text-sm px-4 py-3 rounded-xl transition-all hover:opacity-80"
+                    className="text-left text-sm px-4 py-3 rounded-2xl transition-all hover:opacity-80"
                     style={{
-                      backgroundColor: situation === preset ? "#7A9E7E" : "#F0EDE6",
-                      color: situation === preset ? "#fff" : "#2C2C2C",
-                      border: "1px solid #E8E2D9",
+                      backgroundColor: situation === preset ? "var(--color-teal)" : "var(--color-surface)",
+                      color: situation === preset ? "#fff" : "var(--color-ink)",
+                      border: `1px solid ${situation === preset ? "var(--color-teal)" : "var(--color-border)"}`,
                     }}
                   >
-                    &ldquo;{preset}&rdquo;
+                    {preset}
                   </button>
                 ))}
               </div>
@@ -220,38 +269,44 @@ export default function Home() {
             <button
               onClick={generateScripts}
               disabled={!situation.trim() || loading}
-              className="w-full py-4 rounded-xl text-lg font-medium text-white transition-all"
+              className="w-full py-4 rounded-2xl text-lg font-bold text-white transition-all"
               style={{
-                backgroundColor: !situation.trim() || loading ? "#B8CEB9" : "#7A9E7E",
+                backgroundColor: !situation.trim() || loading ? "color-mix(in srgb, var(--color-teal) 35%, var(--color-surface))" : "var(--color-teal)",
                 cursor: !situation.trim() || loading ? "not-allowed" : "pointer",
               }}
             >
-              {loading ? "Finding the right words…" : "Generate Scripts"}
+              {loading ? "Finding the right words…" : "Generate scripts"}
             </button>
 
-            {/* Loading indicator */}
+            {/* Loading skeleton */}
             {loading && (
-              <div className="text-center py-4">
-                <div className="inline-flex items-center gap-2 text-sm" style={{ color: "#6B6B6B" }}>
-                  <span style={{ animation: "pulse-soft 1.5s ease-in-out infinite" }}>
-                    ✦
-                  </span>
-                  Personalizing for Margaret…
-                </div>
+              <div className="flex flex-col gap-2.5">
+                {[0, 1, 2].map((i) => (
+                  <div
+                    key={i}
+                    className="h-[62px] rounded-2xl"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, var(--color-surface) 0%, var(--color-border) 50%, var(--color-surface) 100%)",
+                      backgroundSize: "200% 100%",
+                      animation: "shimmer 1.2s ease-in-out infinite",
+                    }}
+                  />
+                ))}
               </div>
             )}
 
             {/* Error */}
             {error && (
-              <p className="text-sm text-center" style={{ color: "#C0605A" }}>
+              <p className="text-sm text-center" style={{ color: "var(--color-coral)" }}>
                 {error}
               </p>
             )}
 
             {/* Script cards */}
             {scripts.length > 0 && (
-              <div className="space-y-3">
-                <p className="text-xs uppercase tracking-wider" style={{ color: "#6B6B6B" }}>
+              <div className="flex flex-col gap-2.5">
+                <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--color-ink-muted)" }}>
                   3 response options for Margaret
                 </p>
                 {scripts.map((script, i) => (
