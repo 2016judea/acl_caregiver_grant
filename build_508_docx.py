@@ -359,16 +359,29 @@ def build_track(key):
         logs_path = d / f"{cfg['stem']}_Data_Output_Logs.docx"
         lg.save(logs_path)
 
-    return sub_path, appx_path, logs_path, abstract
+    # ---- TRL Validation Log (supplemental; does not count toward the page limit) ----
+    trl_path = None
+    trl_md_file = d / f"{cfg['stem'].lower()}_trl_validation.md"
+    if trl_md_file.exists():
+        tv = Document()
+        set_default_language(tv)
+        tv.core_properties.title = cfg["title"] + " — TRL Validation Log"
+        render_markdown(tv, trl_md_file.read_text())
+        trl_path = d / f"{cfg['stem']}_TRL_Validation.docx"
+        tv.save(trl_path)
+
+    return sub_path, appx_path, logs_path, trl_path, abstract
 
 if __name__ == "__main__":
     for key in ("dementia", "cna"):
-        sub, appx, logs, abstract = build_track(key)
+        sub, appx, logs, trl, abstract = build_track(key)
         print(f"\n=== {key.upper()} ===  abstract words: {wc(abstract)}")
         outputs = [("Submission (narrative ≤15pp)", sub, 15),
                    ("Evidence Appendix", appx, None)]
         if logs is not None:
             outputs.append(("Data Output Logs (supplemental)", logs, None))
+        if trl is not None:
+            outputs.append(("TRL Validation Log (supplemental)", trl, None))
         for label, path, limit in outputs:
             dg = diagnose(path)
             flag = ""

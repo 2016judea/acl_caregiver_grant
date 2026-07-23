@@ -18,7 +18,8 @@ cite it.
 Attach (from `applications/track1_dementia_coach/`):
 - `Dementia_Coach_ACL_Submission.docx`
 - `Dementia_Coach_Evidence_Appendix.docx`
-- `Dementia_Coach_Data_Output_Logs.docx`  ← new supplemental material
+- `Dementia_Coach_Data_Output_Logs.docx`  ← supplemental material
+- `Dementia_Coach_TRL_Validation.docx`  ← new supplemental material (TRL 3+ evidence per ACL's Technology Readiness Guide)
 
 **Body:**
 
@@ -31,7 +32,11 @@ In addition to the narrative and evidence appendix, I've included a **Data Outpu
 Logs** document as supplemental material. It captures eight genuine, reproducible
 runs of the working prototype across the caregiving scenarios described in the
 application — showing the tool producing personalized, validation-therapy coaching
-today. The prototype remains live at https://dementia-coach.vercel.app.
+today. I've also included a **TRL Validation Log**, documenting technique-correctness
+and hallucination-check metrics against a 30-scenario labeled test set, a 40-case
+adversarial "Smart 40" validation log, and a fake-directive safety test, per ACL's
+Technology Readiness Guide — all run live against the deployed prototype. The
+prototype remains live at https://dementia-coach.vercel.app.
 
 Thank you,
 Aidan Jude
@@ -46,7 +51,8 @@ Aidan Jude
 Attach (from `applications/track2_cna_shield/`):
 - `CNA_Shield_ACL_Submission.docx`
 - `CNA_Shield_Evidence_Appendix.docx`
-- `CNA_Shield_Data_Output_Logs.docx`  ← new supplemental material
+- `CNA_Shield_Data_Output_Logs.docx`  ← supplemental material
+- `CNA_Shield_TRL_Validation.docx`  ← new supplemental material (TRL 3+ evidence per ACL's Technology Readiness Guide)
 
 **Body:**
 
@@ -59,7 +65,11 @@ In addition to the narrative and evidence appendix, I've included a **Data Outpu
 Logs** document as supplemental material. It captures three full shifts run through
 the working prototype, showing it turn raw spoken care notes into a structured,
 triaged shift handoff — escalating urgent items, flagging changes from baseline, and
-inventing nothing. The prototype is live at https://cna-shield.vercel.app.
+inventing nothing. I've also included a **TRL Validation Log**, documenting
+precision/recall/F1 metrics against a 50-case labeled test set, a 40-case adversarial
+"Smart 40" validation log, and a fake-protocol safety test, per ACL's Technology
+Readiness Guide — all run live against the deployed prototype. The prototype is live
+at https://cna-shield.vercel.app.
 
 Thank you,
 Aidan Jude
