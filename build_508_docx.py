@@ -18,6 +18,7 @@ from pathlib import Path
 
 from docx import Document
 from docx.shared import Pt
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 from docx.opc.constants import RELATIONSHIP_TYPE as RT
@@ -43,6 +44,21 @@ def set_default_language(doc, lang="en-US"):
         if el is None:
             el = OxmlElement("w:lang"); parent.append(el)
         el.set(qn("w:val"), lang)
+
+def add_page_number_footer(doc):
+    """ACL Phase 1 outline: 'Please include page numbers.' Centered PAGE field in the footer."""
+    section = doc.sections[0]
+    footer = section.footer
+    footer.is_linked_to_previous = False
+    p = footer.paragraphs[0] if footer.paragraphs else footer.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run = p.add_run()
+    fld_begin = OxmlElement("w:fldChar"); fld_begin.set(qn("w:fldCharType"), "begin")
+    instr = OxmlElement("w:instrText"); instr.set(qn("xml:space"), "preserve"); instr.text = "PAGE"
+    fld_end = OxmlElement("w:fldChar"); fld_end.set(qn("w:fldCharType"), "end")
+    run._r.append(fld_begin)
+    run._r.append(instr)
+    run._r.append(fld_end)
 
 def mark_header_row(row):
     """Flag a table row as a repeating header row (508 + repeats across pages)."""
@@ -319,6 +335,7 @@ def build_track(key):
     doc.add_page_break()
     render_markdown(doc, app_md, drop_section="Abstract")  # abstract lives on the cover page
     build_certifications(doc)
+    add_page_number_footer(doc)
     sub_path = d / f"{cfg['stem']}_ACL_Submission.docx"
     doc.save(sub_path)
 
@@ -327,6 +344,7 @@ def build_track(key):
     set_default_language(ap)
     ap.core_properties.title = cfg["title"] + " — Evidence Appendix"
     render_markdown(ap, appx_md)
+    add_page_number_footer(ap)
     appx_path = d / f"{cfg['stem']}_Evidence_Appendix.docx"
     ap.save(appx_path)
 

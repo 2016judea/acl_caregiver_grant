@@ -308,7 +308,7 @@ Dementia Coach is designed for integration with telehealth platforms (warm hando
 
 ---
 
-## Section 5: Meritorious Prize Eligibility — Dementia Caregiving
+## Section 5: Meritorious Prize Eligibility (Optional)
 
 Dementia caregiving is the central design focus of this application, not an ancillary feature. Every design decision is grounded in the specific experience of caring for someone with dementia: the behavioral crises that reality-orientation makes worse, the stage transitions that arrive without preparation, the moral distress that has no safe outlet, the knowledge that validation therapy exists but cannot reach families at scale.
 

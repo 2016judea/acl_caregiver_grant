@@ -69,6 +69,24 @@ EMRs could be interested in this. Native integration with it.
 
 ---
 
+## Letter of support — received 2026-07-22
+
+Kris sent the signed letter (on ICI/UMN Direct Support Workforce Solutions letterhead) at 2:59pm ET, attached to the "Following Up" thread. Saved to `applications/track2_cna_shield/CNA_Shield_Letter_of_Support_Foss.pdf`.
+
+Covers all three asks from the 7/21 follow-up email:
+1. Her role + ICI/UMN's national SME standing on the direct care workforce — confirmed
+2. Cross-role scope of the problem (names CNAs, HHAs, DSPs, DCWs, PCAs explicitly, not just CNAs) — confirmed
+3. Pilot path — "ICI would be delighted to assist in identifying pilot participants across various care sectors" — confirmed, though not yet naming specific named partners/sites (she said in the call she had ideas for who/what — letter keeps it general)
+
+Verdict: no changes needed, ready to attach to resubmission.
+
+She also asked (in the same email) what the startup is called — never told her explicitly, only sent the URL. She guessed right anyway (named the PDF "CNA Shield Letter of Support.pdf").
+
+**Why this matters:** unlocks the last blocking item before resubmission — deadline is July 31, 5pm ET.
+**How to apply:** next steps are (1) reply to Kris confirming + naming CNA Shield, (2) attach the PDF into the appendix/submission package, (3) resubmit.
+
+---
+
 ## Compensation structure — confirmed 2026-07-21
 
 Asked Kris directly whether to structure her compensation personally or as a consulting arrangement/subaward through ICI. Her answer, verbatim: **"I think it would make the most sense for me to be added as a consultant from ICI/Univ. of MN rather than personally."**

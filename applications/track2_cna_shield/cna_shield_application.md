@@ -92,7 +92,7 @@ Legal staffing ratios (1:8 in many states) are routinely violated. Our analysis 
 
 CNAs who report unsafe conditions risk termination. The CNA who submitted a state report described needing to include her name in the submission email — making the "anonymous" report traceable. Without objective, timestamped, aggregated evidence, ratio violation reports are dismissed as disgruntled worker complaints.
 
-**Beyond CNAs: a shared direct-care pattern.** CNA Shield's evidence base above is CNA-specific — 6,333 posts drawn from CNA and adjacent caregiver communities — and CNA is Phase 1's pilot role. But the underlying failure mode is not unique to CNAs. In discussion with the Direct Support Workforce Solutions team at the University of Minnesota's Institute on Community Integration (ICI), which works across the intellectual/developmental disability and home health direct care workforce, the same pattern recurred: Direct Support Professionals (DSPs), Home Health Aides, and Community Support Professionals (CSPs) perform structurally identical hands-on, documentation-heavy shift work, often with even less formal training than CNAs receive. The Bureau of Labor Statistics groups these roles under related direct-care occupational categories, and ACL itself has been pursuing cross-sector workforce tooling standardization. CNA Shield's voice-first mechanic — speak while working, structured entry, auto-generated handoff — is role-agnostic by design; Phase 1 pilots it with CNAs specifically because that is where the deepest evidence base and TRL readiness already exist, not because the mechanism is CNA-specific. The working prototype demonstrates this directly.
+**Beyond CNAs: a shared direct-care pattern.** CNA Shield's evidence base above is CNA-specific — 6,333 posts drawn from CNA and adjacent caregiver communities — and CNA is Phase 1's pilot role. But the underlying failure mode is not unique to CNAs. In discussion with the Direct Support Workforce Solutions team at the University of Minnesota's Institute on Community Integration (ICI), which works across the intellectual/developmental disability and home health direct care workforce, the same pattern recurred: Direct Support Professionals (DSPs), Home Health Aides, and Community Support Professionals (CSPs) perform structurally identical hands-on, documentation-heavy shift work, often with even less formal training than CNAs receive. The Bureau of Labor Statistics groups these roles under related direct-care occupational categories, and ACL itself has been pursuing cross-sector workforce tooling standardization. CNA Shield's voice-first mechanic — speak while working, structured entry, auto-generated handoff — is role-agnostic by design; Phase 1 pilots it with CNAs specifically because that is where the deepest evidence base and TRL readiness already exist, not because the mechanism is CNA-specific. The working prototype demonstrates this directly. This cross-role scope is independently confirmed in the accompanying letter of support from ICI's Director of Direct Support Workforce Solutions (see Section 2.5 and appendix materials).
 
 ### 1.2 The AI Solution
 
@@ -146,7 +146,7 @@ Phase 1 will extend this foundation with structured participatory design session
 
 Phase 1 evaluation uses a pre-post design across two partner facilities:
 
-- **Participants:** 50 CNAs across 2 SNF/long-term care facilities to be recruited during Phase 1 foundation months (target: diverse geography, facility size, payer mix)
+- **Participants:** 50 CNAs across 2 SNF/long-term care facilities to be recruited during Phase 1 foundation months (target: diverse geography, facility size, payer mix), with facility and participant identification supported by ICI/UMN's Direct Support Workforce Solutions team and its national provider network (see letter of support, Section 2.5)
 - **Duration:** 8-week active use period per cohort
 - **Control condition:** Standard facility documentation practices at baseline
 
@@ -168,6 +168,7 @@ Phase 1 evaluation uses a pre-post design across two partner facilities:
 
 | Risk | Mitigation |
 |------|-----------|
+| Facility/participant recruitment for Phase 1 pilot cohort | ICI/UMN's Direct Support Workforce Solutions team has committed, in its letter of support, to assist in identifying pilot participants across care sectors — drawing on ICI's national network of provider organizations and direct care leaders rather than cold outreach alone |
 | Facility WiFi gaps during voice logging | On-device processing; sync-on-connect architecture |
 | CNA skepticism about employer data access | Worker-controlled data governance; facility cannot access individual CNA logs without consent |
 | Voice accuracy for accents/fast speech | Multi-accent training data; easy correction UI; human review before submission |
@@ -202,7 +203,7 @@ Structured workshops with 20 CNAs across 3 facility types (SNF, memory care, hom
 
 | Phase | Months | Key Milestones |
 |-------|--------|---------------|
-| Foundation | 1–3 | IRB approval; facility partner outreach and LOI agreements; CNA advisory panel recruited; voice model training initiated; HIPAA compliance review complete |
+| Foundation | 1–3 | IRB approval; facility partner outreach and LOI agreements, supported by ICI/UMN's provider network; CNA advisory panel recruited; voice model training initiated; HIPAA compliance review complete |
 | Alpha | 4–6 | Working prototype with Module 1 (voice logging); 30 alpha CNA users; usability testing; clinical terminology accuracy benchmarked |
 | Beta | 7–9 | All three modules integrated; 50 beta users across 2 facilities; EHR integration scoped with partner vendor |
 | Validation | 10–12 | Outcome metric analysis; refinement based on user data; Phase 2 design document; FHIR integration pilot |
@@ -217,7 +218,7 @@ Structured workshops with 20 CNAs across 3 facility types (SNF, memory care, hom
 | UX / User Research | Participatory design facilitation, usability testing, interaction design |
 | Workforce Partner | Direct Support Workforce Solutions team, University of Minnesota Institute on Community Integration (ICI) — CNA/DSP recruitment and trust-building, worker-protective governance design informed by ICI's cross-sector direct care workforce expertise |
 
-CNA Shield is in active collaboration with ICI, the University of Minnesota's designated University Center for Excellence in Developmental Disabilities, engaged through ICI Director Amy Hewitt and ICI's Direct Support Workforce Solutions team. ICI reviewed the working prototype and is preparing a letter of support (forthcoming) reflecting this collaboration.
+CNA Shield is in active collaboration with ICI, the University of Minnesota's designated University Center for Excellence in Developmental Disabilities, engaged through ICI Director Amy Hewitt and ICI's Direct Support Workforce Solutions team. ICI reviewed the working prototype and has provided a signed letter of support (see accompanying appendix materials), confirming ICI's standing as a national direct-care workforce SME, the cross-role scope of the documentation and handoff problem CNA Shield addresses, and ICI's commitment to assist in identifying pilot participants across care sectors should CNA Shield be awarded funding.
 
 *Additional team members will be recruited and onboarded during Phase 1 foundation months (clinical advisor, UX researcher). Biographical sketches will be updated upon recruitment.*
 
@@ -282,7 +283,7 @@ Nursing facilities have unreliable WiFi. Voice logs record locally with on-devic
 
 ---
 
-## Section 5: Meritorious Prize Eligibility
+## Section 5: Meritorious Prize Eligibility (Optional)
 
 CNA Shield addresses the **EMR Interoperability** Track 2 meritorious focus area as a central design element.
 
