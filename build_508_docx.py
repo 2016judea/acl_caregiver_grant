@@ -24,6 +24,7 @@ from docx.oxml import OxmlElement
 from docx.opc.constants import RELATIONSHIP_TYPE as RT
 
 ROOT = Path(__file__).resolve().parent / "applications"
+SEND_DIR = ROOT / "ready_to_send"  # all finished docx outputs land here, ready to attach to the resubmission emails
 
 # ---------- low-level 508 helpers ----------
 
@@ -323,6 +324,7 @@ TRACKS = {
 def build_track(key):
     cfg = TRACKS[key]
     d = ROOT / cfg["dir"]
+    SEND_DIR.mkdir(exist_ok=True)
     app_md = (d / f"{cfg['stem'].lower()}_application.md").read_text()
     appx_md = (d / f"{cfg['stem'].lower()}_evidence_appendix.md").read_text()
     abstract = get_abstract(app_md)
@@ -336,7 +338,7 @@ def build_track(key):
     render_markdown(doc, app_md, drop_section="Abstract")  # abstract lives on the cover page
     build_certifications(doc)
     add_page_number_footer(doc)
-    sub_path = d / f"{cfg['stem']}_ACL_Submission.docx"
+    sub_path = SEND_DIR / f"{cfg['stem']}_ACL_Submission.docx"
     doc.save(sub_path)
 
     # ---- Evidence Appendix ----
@@ -345,7 +347,7 @@ def build_track(key):
     ap.core_properties.title = cfg["title"] + " — Evidence Appendix"
     render_markdown(ap, appx_md)
     add_page_number_footer(ap)
-    appx_path = d / f"{cfg['stem']}_Evidence_Appendix.docx"
+    appx_path = SEND_DIR / f"{cfg['stem']}_Evidence_Appendix.docx"
     ap.save(appx_path)
 
     # ---- Data Output Logs (supplemental; does not count toward page limit) ----
@@ -356,7 +358,7 @@ def build_track(key):
         set_default_language(lg)
         lg.core_properties.title = cfg["title"] + " — Data Output Logs"
         render_markdown(lg, logs_md_file.read_text())
-        logs_path = d / f"{cfg['stem']}_Data_Output_Logs.docx"
+        logs_path = SEND_DIR / f"{cfg['stem']}_Data_Output_Logs.docx"
         lg.save(logs_path)
 
     # ---- TRL Validation Log (supplemental; does not count toward the page limit) ----
@@ -367,7 +369,7 @@ def build_track(key):
         set_default_language(tv)
         tv.core_properties.title = cfg["title"] + " — TRL Validation Log"
         render_markdown(tv, trl_md_file.read_text())
-        trl_path = d / f"{cfg['stem']}_TRL_Validation.docx"
+        trl_path = SEND_DIR / f"{cfg['stem']}_TRL_Validation.docx"
         tv.save(trl_path)
 
     return sub_path, appx_path, logs_path, trl_path, abstract
