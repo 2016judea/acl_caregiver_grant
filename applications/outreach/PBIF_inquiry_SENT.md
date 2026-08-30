@@ -2,7 +2,14 @@
 
 **Status:** SENT 2026-08-30 from aidan@brickandmortar.dev on Aidan's instruction.
 Message-ID `<1a053d52066.3ff6874d30249.5621017882234396607@brickandmortar.dev>`.
-Watch that mailbox for the reply — it decides whether PBIF is a door or a dead end.
+**It bounced.** `info@publicbenefitinnovationfund.org` — the address printed at the
+foot of PBIF's own April Q&A post — returned 5.1.3, *"the email account that you
+tried to reach does not exist."* Seven seconds after send.
+
+**Resent 2026-08-30 to info@centerforcivicfutures.org**, the address on the Center
+for Civic Futures contact page, with a closing line telling them their PBIF address
+bounces. Message-ID `<1a053d7288d.6e0a1e4532537.1443083166743363254@brickandmortar.dev>`.
+No bounce on the resend. Watch that mailbox for the reply.
 **To:** info@publicbenefitinnovationfund.org
 **Drafted:** 2026-08-30
 
