@@ -37,8 +37,8 @@ remembered. Re-verify before acting; these move fast.
   rates, processing time. Their own gut check: "Does your idea fix the system — or
   work around it?" No signed government partner needed at application. Contact
   info@publicbenefitinnovationfund.org; Director is Eleanor Davis. Calls have run
-  summer 2025 and spring 2026, so a third is likely — inquiry drafted at
-  `applications/outreach/PBIF_inquiry_draft.md`.
+  summer 2025 and spring 2026, so a third is likely — inquiry SENT 2026-08-30, see
+  `applications/outreach/PBIF_inquiry_SENT.md`.
 - **Army xTech** — runs continuously and AI/ML is a standing portfolio. Next
   competition announcement at xtech.army.mil.
 - **NIA SBIR (PA-27-100)** — still the plan of record for CNA Shield, targeting the

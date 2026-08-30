@@ -1,6 +1,8 @@
-# DRAFT — Public Benefit Innovation Fund inquiry
+# Public Benefit Innovation Fund inquiry — SENT
 
-**Status:** draft. Aidan sends, or doesn't.
+**Status:** SENT 2026-08-30 from aidan@brickandmortar.dev on Aidan's instruction.
+Message-ID `<1a053d52066.3ff6874d30249.5621017882234396607@brickandmortar.dev>`.
+Watch that mailbox for the reply — it decides whether PBIF is a door or a dead end.
 **To:** info@publicbenefitinnovationfund.org
 **Drafted:** 2026-08-30
 
