@@ -251,11 +251,12 @@ export default function DemoPage() {
               }}
               className="mt-3 flex gap-2"
             >
+              {/* text-base, not text-sm: iOS Safari zooms in on a focused input under 16px and stays zoomed (mobile-ui-audit, 2026-10-04) */}
               <input
                 value={noteText}
                 onChange={(e) => setNoteText(e.target.value)}
                 placeholder="…or type a care note (e.g. Room 214 BP 150/95)"
-                className="flex-1 rounded-lg px-3 py-2 text-sm focus:outline-none"
+                className="flex-1 rounded-lg px-3 py-2 text-base focus:outline-none"
                 style={{ border: "1px solid #E2E8F0", color: "#1E293B" }}
               />
               <button
