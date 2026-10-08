@@ -41,7 +41,7 @@ today. I've also included a **TRL Validation Log**, documenting technique-correc
 and hallucination-check metrics against a 30-scenario labeled test set, a 40-case
 adversarial "Smart 40" validation log, and a fake-directive safety test, per ACL's
 Technology Readiness Guide — all run live against the deployed prototype. The
-prototype remains live at https://dementia-coach.vercel.app.
+prototype remains live at https://dementia-coach.vercel.app/
 
 Thank you,
 Aidan Jude
@@ -77,7 +77,7 @@ precision/recall/F1 metrics against a 50-case labeled test set, a 40-case advers
 Readiness Guide — all run live against the deployed prototype. Finally, I've included
 a letter of support from the Institute on Community Integration (ICI) at the
 University of Minnesota's Direct Support Workforce Solutions team, referenced in
-Section 2.5 of the application. The prototype is live at https://cna-shield.vercel.app.
+Section 2.5 of the application. The prototype is live at https://cna-shield.vercel.app/
 
 Thank you,
 Aidan Jude
