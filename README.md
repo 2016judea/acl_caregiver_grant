@@ -1,5 +1,7 @@
 # Caregiver AI Challenge — Data Mining System
 
+**Live:** https://cna-shield.vercel.app · https://dementia-coach.vercel.app
+
 A data-mining, analysis, and retrieval pipeline built for the ACL (Administration for
 Community Living) **Caregiver AI Challenge**. It surfaces real pain points from online
 caregiver communities to inform which track(s) to apply to and to provide evidence-backed
