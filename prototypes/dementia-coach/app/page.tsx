@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 
 interface Script {
@@ -158,12 +158,15 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [scripts, setScripts] = useState<Script[]>([]);
   const [error, setError] = useState("");
+  // Bumped on every generate and every situation change; a response for an older request is dropped.
+  const requestRef = useRef(0);
 
   async function generateScripts() {
     if (!situation.trim()) return;
     setLoading(true);
     setScripts([]);
     setError("");
+    const request = ++requestRef.current;
     try {
       const res = await fetch("/api/coach", {
         method: "POST",
@@ -172,18 +175,22 @@ export default function Home() {
       });
       if (!res.ok) throw new Error("API error");
       const data = await res.json();
-      setScripts(data.scripts);
+      // The situation or persona changed while this was in flight: these scripts belong to the old one.
+      if (request !== requestRef.current) return;
+      setScripts(Array.isArray(data.scripts) ? data.scripts : []);
     } catch {
-      setError("Something went wrong. Please try again.");
+      if (request === requestRef.current) setError("Something went wrong. Please try again.");
     } finally {
-      setLoading(false);
+      if (request === requestRef.current) setLoading(false);
     }
   }
 
   function handlePreset(preset: string) {
+    requestRef.current += 1;
     setSituation(preset);
     setScripts([]);
     setError("");
+    setLoading(false);
   }
 
   return (
@@ -192,9 +199,9 @@ export default function Home() {
         <div className="max-w-5xl mx-auto flex items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <LogoMark />
-            <p className="text-base font-bold tracking-tight" style={{ color: "var(--color-ink)" }}>
+            <h1 className="text-base font-bold tracking-tight" style={{ color: "var(--color-ink)" }}>
               Dementia Coach
-            </p>
+            </h1>
           </div>
           <div className="flex items-center gap-4">
             <p className="text-sm hidden sm:block" style={{ color: "var(--color-ink-muted)" }}>
@@ -221,10 +228,11 @@ export default function Home() {
           {/* Coaching interface */}
           <div className="md:col-span-3 space-y-5">
             <div>
-              <label className="block text-sm font-semibold mb-2" style={{ color: "var(--color-ink)" }}>
+              <label htmlFor="situation" className="block text-sm font-semibold mb-2" style={{ color: "var(--color-ink)" }}>
                 Describe what&rsquo;s happening right now
               </label>
               <textarea
+                id="situation"
                 value={situation}
                 onChange={(e) => setSituation(e.target.value)}
                 placeholder="e.g. She keeps asking where her mother is. She's very upset."
@@ -252,6 +260,7 @@ export default function Home() {
                   <button
                     key={preset}
                     onClick={() => handlePreset(preset)}
+                    aria-pressed={situation === preset}
                     className="text-left text-sm px-4 py-3 rounded-2xl transition-all hover:opacity-80"
                     style={{
                       backgroundColor: situation === preset ? "var(--color-teal)" : "var(--color-surface)",
@@ -278,12 +287,17 @@ export default function Home() {
               {loading ? "Finding the right words…" : "Generate scripts"}
             </button>
 
+            <p role="status" aria-live="polite" className="sr-only">
+              {loading ? "Finding the right words" : error ? error : scripts.length > 0 ? "Three response options are ready" : ""}
+            </p>
+
             {/* Loading skeleton */}
             {loading && (
               <div className="flex flex-col gap-2.5">
                 {[0, 1, 2].map((i) => (
                   <div
                     key={i}
+                    aria-hidden="true"
                     className="h-[62px] rounded-2xl"
                     style={{
                       background:

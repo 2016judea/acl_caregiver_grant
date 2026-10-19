@@ -38,7 +38,7 @@ export default function Home() {
       <header className="px-6 py-4" style={{ backgroundColor: "#1B2B4B" }}>
         <div className="max-w-3xl mx-auto flex items-center justify-between">
           <div>
-            <span className="text-xl font-bold text-white">CNA Shield</span>
+            <h1 className="inline text-xl font-bold text-white">CNA Shield</h1>
             <span className="ml-3 text-sm hidden sm:inline" style={{ color: "#94A3B8" }}>
               Voice-first care documentation
             </span>
@@ -136,7 +136,7 @@ export default function Home() {
                       animation: `slideIn 0.3s ease-out ${i * 0.1}s both`,
                     }}
                   >
-                    <span style={{ color: entry.color, fontSize: 18, lineHeight: 1.4 }}>✓</span>
+                    <span aria-hidden="true" style={{ color: entry.color, fontSize: 18, lineHeight: 1.4 }}>✓</span>
                     <div>
                       <span className="text-xs font-mono mr-2" style={{ color: "#64748B" }}>
                         {entry.time}
@@ -156,16 +156,17 @@ export default function Home() {
                   Shift handoff — auto-generated
                 </p>
                 <div className="space-y-2 text-sm">
+                  {/* Each line restates only what its log entry above says: 308's 142/88 is 308's, not Mr. Davis's. */}
                   <div className="flex items-start gap-2">
-                    <span style={{ color: "#DC2626" }}>🔴</span>
-                    <span><strong>URGENT:</strong> Mr. Davis (301) — BP elevated twice this shift (142/88, then 156/94)</span>
+                    <span aria-hidden="true" style={{ color: "#DC2626" }}>🔴</span>
+                    <span><strong>URGENT:</strong> Mr. Davis (301) — BP 156/94, second elevated reading this shift</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <span style={{ color: "#D97706" }}>⚠️</span>
-                    <span><strong>WATCH:</strong> Room 312 — confusion above baseline, monitor overnight</span>
+                    <span aria-hidden="true" style={{ color: "#D97706" }}>⚠️</span>
+                    <span><strong>WATCH:</strong> Room 308 — BP 142/88, elevated; Room 312 — confusion above baseline, monitor overnight</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <span style={{ color: "#16A34A" }}>✓</span>
+                    <span aria-hidden="true" style={{ color: "#16A34A" }}>✓</span>
                     <span>14 residents checked, all repositioned per schedule</span>
                   </div>
                   <div
@@ -196,9 +197,9 @@ export default function Home() {
         {/* Cross-role section */}
         <section className="mt-16 pt-2">
           <div className="flex items-baseline justify-between mb-5 gap-4">
-            <h3 className="text-lg font-bold" style={{ color: "#1E293B" }}>
+            <h2 className="text-lg font-bold" style={{ color: "#1E293B" }}>
               Marcus&rsquo;s shift isn&rsquo;t unique to CNAs.
-            </h3>
+            </h2>
             <span
               className="text-xs font-mono whitespace-nowrap hidden sm:inline"
               style={{ color: "#64748B" }}

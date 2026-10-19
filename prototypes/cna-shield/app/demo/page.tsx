@@ -18,10 +18,10 @@ const PRESET_ENTRIES: LogEntry[] = [
 ];
 
 const URGENCY_COLORS = {
-  green: { icon: "✓", color: "#16A34A", bg: "#F0FDF4", border: "#BBF7D0" },
-  amber: { icon: "⚠", color: "#D97706", bg: "#FFFBEB", border: "#FDE68A" },
-  red: { icon: "🔴", color: "#DC2626", bg: "#FEF2F2", border: "#FECACA" },
-  neutral: { icon: "•", color: "#64748B", bg: "#F1F5F9", border: "#E2E8F0" },
+  green: { icon: "✓", label: "Completed", color: "#16A34A", bg: "#F0FDF4", border: "#BBF7D0" },
+  amber: { icon: "⚠", label: "Watch", color: "#D97706", bg: "#FFFBEB", border: "#FDE68A" },
+  red: { icon: "🔴", label: "Urgent", color: "#DC2626", bg: "#FEF2F2", border: "#FECACA" },
+  neutral: { icon: "•", label: "Note", color: "#64748B", bg: "#F1F5F9", border: "#E2E8F0" },
 };
 
 function useShiftTimer() {
@@ -63,6 +63,8 @@ export default function DemoPage() {
   const [noteText, setNoteText] = useState("");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recognitionRef = useRef<any>(null);
+  // Bumped on every log change; a handoff response for an older version is dropped.
+  const logVersionRef = useRef(0);
   const shiftTimer = useShiftTimer();
 
   const residentCount = 14;
@@ -75,6 +77,7 @@ export default function DemoPage() {
     const t = text.trim();
     if (!t) return;
     setLogs((prev) => [{ time: getNow(), text: t, urgency }, ...prev]);
+    logVersionRef.current += 1;
     setAiHandoff(null);
     setHandoffExpanded(false);
   }
@@ -116,6 +119,7 @@ export default function DemoPage() {
     }
     setGenerating(true);
     setGenError(false);
+    const version = logVersionRef.current;
     try {
       // Send the raw spoken notes (oldest first) to the real AI backend.
       const notes = [...logs].reverse().map((l) => l.text);
@@ -125,14 +129,16 @@ export default function DemoPage() {
         body: JSON.stringify({ notes, assigned: residentCount, legal: 8 }),
       });
       const data = await res.json();
-      if (data.handoff) {
+      // A note was added while this was in flight: this handoff is already stale.
+      if (version !== logVersionRef.current) return;
+      if (res.ok && data.handoff) {
         setAiHandoff(data.handoff);
         setHandoffExpanded(true);
       } else {
         setGenError(true);
       }
     } catch {
-      setGenError(true);
+      if (version === logVersionRef.current) setGenError(true);
     } finally {
       setGenerating(false);
     }
@@ -195,6 +201,7 @@ export default function DemoPage() {
       </div>
 
       <main className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-0">
+        <h1 className="sr-only">CNA Shield shift log</h1>
         {/* LEFT: Voice log */}
         <div
           className="flex flex-col p-5"
@@ -216,16 +223,25 @@ export default function DemoPage() {
               <button
                 onClick={handleMicTap}
                 disabled={listening || fallbackDone}
+                aria-label={
+                  listening
+                    ? "Listening"
+                    : fallbackDone
+                    ? "Sample log complete"
+                    : micSupported
+                    ? "Start a voice note"
+                    : "Log a sample care note"
+                }
                 className="relative w-20 h-20 rounded-full text-3xl text-white flex items-center justify-center shadow-lg transition-all active:scale-95"
                 style={{
                   backgroundColor: listening ? "#DC2626" : fallbackDone ? "#94A3B8" : "#1B2B4B",
                   cursor: listening || fallbackDone ? "not-allowed" : "pointer",
                 }}
               >
-                {listening ? "⏺" : "🎙"}
+                <span aria-hidden="true">{listening ? "⏺" : "🎙"}</span>
               </button>
             </div>
-            <p className="mt-3 text-sm text-center" style={{ color: "#64748B" }}>
+            <p role="status" aria-live="polite" className="mt-3 text-sm text-center" style={{ color: "#64748B" }}>
               {listening
                 ? micSupported
                   ? "Listening… speak your note"
@@ -252,7 +268,11 @@ export default function DemoPage() {
               className="mt-3 flex gap-2"
             >
               {/* text-base, not text-sm: iOS Safari zooms in on a focused input under 16px and stays zoomed (mobile-ui-audit, 2026-10-04) */}
+              <label htmlFor="care-note" className="sr-only">
+                Care note
+              </label>
               <input
+                id="care-note"
                 value={noteText}
                 onChange={(e) => setNoteText(e.target.value)}
                 placeholder="…or type a care note (e.g. Room 214 BP 150/95)"
@@ -289,10 +309,11 @@ export default function DemoPage() {
                     animation: "slideIn 0.3s ease-out",
                   }}
                 >
-                  <span style={{ color: colors.color, fontSize: 16, lineHeight: 1.5 }}>
+                  <span aria-hidden="true" style={{ color: colors.color, fontSize: 16, lineHeight: 1.5 }}>
                     {colors.icon}
                   </span>
                   <div>
+                    <span className="sr-only">{colors.label}: </span>
                     <span className="text-xs font-mono mr-2" style={{ color: "#64748B" }}>
                       {entry.time}
                     </span>
@@ -352,7 +373,7 @@ export default function DemoPage() {
                   style={{ backgroundColor: "#FEF2F2", border: "1px solid #FECACA" }}
                 >
                   <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#DC2626" }}>
-                    🔴 Urgent
+                    <span aria-hidden="true">🔴</span> Urgent
                   </p>
                   {urgentEntries.map((e, i) => (
                     <p key={i} className="text-sm" style={{ color: "#1E293B" }}>
@@ -368,7 +389,7 @@ export default function DemoPage() {
                   style={{ backgroundColor: "#FFFBEB", border: "1px solid #FDE68A" }}
                 >
                   <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#D97706" }}>
-                    ⚠ Watch
+                    <span aria-hidden="true">⚠</span> Watch
                   </p>
                   {watchEntries.map((e, i) => (
                     <p key={i} className="text-sm" style={{ color: "#1E293B" }}>
@@ -383,7 +404,7 @@ export default function DemoPage() {
                 style={{ backgroundColor: "#F0FDF4", border: "1px solid #BBF7D0" }}
               >
                 <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: "#16A34A" }}>
-                  ✓ Completed
+                  <span aria-hidden="true">✓</span> Completed
                 </p>
                 <p className="text-sm" style={{ color: "#1E293B" }}>
                   {logs.length} care events logged this shift
@@ -431,10 +452,13 @@ export default function DemoPage() {
                 )}
               </div>
 
+              <p role="status" aria-live="polite" className="sr-only">
+                {generating ? "Building the handoff" : genError ? "The handoff could not be built" : aiHandoff ? "Handoff ready" : ""}
+              </p>
+
               {genError && (
                 <p className="text-xs" style={{ color: "#DC2626" }}>
-                  Couldn&apos;t reach the handoff service. Check the ANTHROPIC_API_KEY
-                  environment variable on the deployment and try again.
+                  Couldn&apos;t build the handoff just now. Your notes are still here — try again in a moment.
                 </p>
               )}
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 
 interface Script {
@@ -168,14 +168,19 @@ export default function DemoPage() {
 
   const [editing, setEditing] = useState(false);
   const [profileText, setProfileText] = useState(persona.profile);
+  // Bumped on every generate and every persona/situation change; a response for an older request is dropped,
+  // so Margaret's scripts can never land under James's name.
+  const requestRef = useRef(0);
 
   function selectPersona(id: string) {
     const p = PERSONAS.find((x) => x.id === id)!;
+    requestRef.current += 1;
     setPersonaId(id);
     setProfileText(p.profile);
     setSituation("");
     setScripts([]);
     setError("");
+    setLoading(false);
   }
 
   async function generateScripts() {
@@ -183,6 +188,7 @@ export default function DemoPage() {
     setLoading(true);
     setScripts([]);
     setError("");
+    const request = ++requestRef.current;
     try {
       const res = await fetch("/api/coach", {
         method: "POST",
@@ -191,11 +197,13 @@ export default function DemoPage() {
       });
       if (!res.ok) throw new Error("API error");
       const data = await res.json();
-      setScripts(data.scripts);
+      // The situation or persona changed while this was in flight: these scripts belong to the old one.
+      if (request !== requestRef.current) return;
+      setScripts(Array.isArray(data.scripts) ? data.scripts : []);
     } catch {
-      setError("Something went wrong. Please try again.");
+      if (request === requestRef.current) setError("Something went wrong. Please try again.");
     } finally {
-      setLoading(false);
+      if (request === requestRef.current) setLoading(false);
     }
   }
 
@@ -205,9 +213,9 @@ export default function DemoPage() {
         <div className="max-w-5xl mx-auto flex items-center justify-between gap-3">
           <Link href="/" className="flex items-center gap-2.5">
             <LogoMark />
-            <span className="text-base font-bold tracking-tight" style={{ color: "var(--color-ink)" }}>
-              ← Dementia Coach
-            </span>
+            <h1 className="text-base font-bold tracking-tight" style={{ color: "var(--color-ink)" }}>
+              <span aria-hidden="true">← </span>Dementia Coach
+            </h1>
           </Link>
           <p className="text-sm hidden sm:block" style={{ color: "var(--color-ink-muted)" }}>
             The same tool, personalized to whoever you&rsquo;re caring for
@@ -226,6 +234,7 @@ export default function DemoPage() {
               <button
                 key={p.id}
                 onClick={() => selectPersona(p.id)}
+                aria-pressed={p.id === personaId}
                 className="px-4 py-2 rounded-full text-sm font-semibold transition-all"
                 style={{
                   backgroundColor: p.id === personaId ? "var(--color-teal)" : "var(--color-surface)",
@@ -304,13 +313,15 @@ export default function DemoPage() {
                 </>
               ) : (
                 <>
-                  <p
-                    className="text-[11px] font-bold uppercase tracking-wider mt-4 mb-2"
+                  <label
+                    htmlFor="profile-text"
+                    className="block text-[11px] font-bold uppercase tracking-wider mt-4 mb-2"
                     style={{ color: "var(--color-ink-muted)" }}
                   >
                     Profile the AI reads
-                  </p>
+                  </label>
                   <textarea
+                    id="profile-text"
                     value={profileText}
                     onChange={(e) => setProfileText(e.target.value)}
                     rows={9}
@@ -344,10 +355,11 @@ export default function DemoPage() {
           {/* Coaching interface */}
           <div className="md:col-span-3 space-y-5">
             <div>
-              <label className="block text-sm font-semibold mb-2" style={{ color: "var(--color-ink)" }}>
+              <label htmlFor="situation" className="block text-sm font-semibold mb-2" style={{ color: "var(--color-ink)" }}>
                 Describe what&rsquo;s happening right now
               </label>
               <textarea
+                id="situation"
                 value={situation}
                 onChange={(e) => setSituation(e.target.value)}
                 placeholder="e.g. He keeps asking where his wife is. He's getting anxious."
@@ -369,10 +381,13 @@ export default function DemoPage() {
                   <button
                     key={preset}
                     onClick={() => {
+                      requestRef.current += 1;
                       setSituation(preset);
                       setScripts([]);
                       setError("");
+                      setLoading(false);
                     }}
+                    aria-pressed={situation === preset}
                     className="text-left text-sm px-4 py-3 rounded-2xl transition-all hover:opacity-80"
                     style={{
                       backgroundColor: situation === preset ? "var(--color-teal)" : "var(--color-surface)",
@@ -398,11 +413,16 @@ export default function DemoPage() {
               {loading ? "Finding the right words…" : "Generate scripts"}
             </button>
 
+            <p role="status" aria-live="polite" className="sr-only">
+              {loading ? "Finding the right words" : error ? error : scripts.length > 0 ? "Three response options are ready" : ""}
+            </p>
+
             {loading && (
               <div className="flex flex-col gap-2.5">
                 {[0, 1, 2].map((i) => (
                   <div
                     key={i}
+                    aria-hidden="true"
                     className="h-[62px] rounded-2xl"
                     style={{
                       background:
