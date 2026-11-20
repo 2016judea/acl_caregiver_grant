@@ -18,8 +18,8 @@ remembered. Re-verify before acting; these move fast.
 
 ## Live now
 
-- **ACL Caregiver AI Prize Challenge** — ours. Phase 1 winners announced Sept 2026.
-  Still listed active on usa.gov.
+- ~~**ACL Caregiver AI Prize Challenge**~~ **LOST 2026-11-19.** Neither track was selected: 18
+  winners of ~650 (2.8%). See `applications/PHASE1_OUTCOME.md`.
 - **CDC One CDC Data Platform (1CDP) Innovation Challenge** — open to **28 Oct 2026**.
   Audience is CDC and state/tribal/local/territorial partners; the prize is a
   discovery session with 1CDP staff, no money. Low fit.
@@ -43,6 +43,9 @@ remembered. Re-verify before acting; these move fast.
   competition announcement at xtech.army.mil.
 - **NIA SBIR (PA-27-100)** — still the plan of record for CNA Shield, targeting the
   **5 Jan 2027** round, not Sept 2026. Unchanged by anything here.
+  *2026-11-19:* the 5 Jan date is very likely out of reach. Neither inbox nor memory
+  shows a SAM.gov entity registration (UEI) or an eRA Commons account, and a first-time
+  SAM registration takes 4–6 weeks. The next NIH SBIR receipt date is 5 Apr 2027.
 
 ## Notes for the next session
 

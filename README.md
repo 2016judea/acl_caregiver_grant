@@ -2,6 +2,9 @@
 
 **Live:** https://cna-shield.vercel.app · https://dementia-coach.vercel.app
 
+**Status:** ACL Phase 1 was not selected (2026-11-19). Neither track won; there were 18 winners of ~650.
+See [applications/PHASE1_OUTCOME.md](applications/PHASE1_OUTCOME.md).
+
 A data-mining, analysis, and retrieval pipeline built for the ACL (Administration for
 Community Living) **Caregiver AI Challenge**. It surfaces real pain points from online
 caregiver communities to inform which track(s) to apply to and to provide evidence-backed
