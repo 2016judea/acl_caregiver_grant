@@ -41,7 +41,7 @@ remembered. Re-verify before acting; these move fast.
   `applications/outreach/PBIF_inquiry_SENT.md`.
 - **Army xTech** — runs continuously and AI/ML is a standing portfolio. Next
   competition announcement at xtech.army.mil.
-- **NIA SBIR (PA-27-100)** — still the plan of record for CNA Shield, targeting the
+- ~~**NIA SBIR (PA-27-100)**~~ **DROPPED 2026-11-19** (Aidan: "nothing else worth doing here"). History: it was the plan of record for CNA Shield, targeting the
   **5 Jan 2027** round, not Sept 2026. Unchanged by anything here.
   *2026-11-19:* the 5 Jan date is very likely out of reach. Neither inbox nor memory
   shows a SAM.gov entity registration (UEI) or an eRA Commons account, and a first-time
